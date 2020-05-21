@@ -1,0 +1,13 @@
+{
+    "extends": [
+      "tslint:recommended",
+      "tslint-react"
+    ],
+    "rulesDirectory": [
+      "tslint-react"
+    ],
+    "rules": {
+      "interface-name": false,
+      "semicolon": [true, "always"]
+    }
+  }
