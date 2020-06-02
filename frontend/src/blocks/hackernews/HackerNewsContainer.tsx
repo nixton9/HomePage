@@ -50,7 +50,6 @@ const HackerNewsContainer: React.FC = () => {
             url: res.data.url
           }
           setNews(prevState => [...prevState, singleNews])
-          console.log(singleNews)
           allNews.push(singleNews)
         },
         err => {
@@ -77,6 +76,7 @@ const HackerNewsContainer: React.FC = () => {
       hasError={Boolean(error)}
       error={error}
       name="HackerNews"
+      page
     >
       <HackerNews news={news} />
     </BlockWrapper>

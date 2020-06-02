@@ -1,4 +1,6 @@
 import React from 'react'
+import { BlockStyles } from '../styles/BlockStyles'
+import { MainTitle } from '../styles/MainTitle'
 
 interface BlockWrapperProps {
   isLoading: boolean
@@ -6,6 +8,7 @@ interface BlockWrapperProps {
   error?: string
   children: React.ReactNode
   name: string
+  page?: boolean
 }
 
 export const BlockWrapper: React.FC<BlockWrapperProps> = ({
@@ -13,17 +16,21 @@ export const BlockWrapper: React.FC<BlockWrapperProps> = ({
   hasError,
   error,
   children,
-  name
+  name,
+  page
 }) => {
   return (
-    <div className="block">
-      {hasError ? (
-        <div className="error">{error}</div>
-      ) : isLoading ? (
-        <div className="loading">Loading {name}...</div>
-      ) : (
-        <div>{children}</div>
-      )}
-    </div>
+    <BlockStyles>
+      <div className={page ? 'page' : 'block'}>
+        {page && <MainTitle>{name}</MainTitle>}
+        {hasError ? (
+          <div className="error">{error}</div>
+        ) : isLoading ? (
+          <div className="loading">Loading {name}...</div>
+        ) : (
+          <div>{children}</div>
+        )}
+      </div>
+    </BlockStyles>
   )
 }

@@ -80,6 +80,7 @@ const DribbbleContainer: React.FC = () => {
       hasError={Boolean(error)}
       error={error}
       name="Dribbble"
+      page
     >
       <Dribbble
         shots={shots}

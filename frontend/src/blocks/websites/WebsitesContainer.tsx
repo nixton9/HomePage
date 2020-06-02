@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import { Websites } from './Websites'
-import { WebsiteForm } from './WebsiteForm'
 import { v4 as uuidv4 } from 'uuid'
 
 export interface Website {
@@ -17,11 +16,15 @@ const WebsitesContainer: React.FC = () => {
 
   const addWebsite = (url, name) => {
     const finalUrl = url.replace(/(^\w+:|^)\/\//, '')
+    let iconUrl = finalUrl
+    if (finalUrl.includes('reddit.com')) {
+      iconUrl = 'reddit.com'
+    }
     const newWebsite = {
       id: uuidv4(),
       url: `http://${finalUrl}`,
       name,
-      icon: `https://api.faviconkit.com/${finalUrl}/144`
+      icon: `https://api.faviconkit.com/${iconUrl}/144`
     }
     setWebsites([...websites, newWebsite])
   }
@@ -44,11 +47,11 @@ const WebsitesContainer: React.FC = () => {
 
   return (
     <BlockWrapper isLoading={false} hasError={false} error={''} name="Websites">
-      <Websites websites={websites} deleteWebsite={deleteWebsite} />
-      <button onClick={() => setShowForm(true)}>Add</button>
-      {showForm && (
-        <WebsiteForm setShowForm={setShowForm} addWebsite={addWebsite} />
-      )}
+      <Websites
+        websites={websites}
+        deleteWebsite={deleteWebsite}
+        addWebsite={addWebsite}
+      />
     </BlockWrapper>
   )
 }

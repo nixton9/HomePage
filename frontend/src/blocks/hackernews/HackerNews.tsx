@@ -1,5 +1,8 @@
 import React from 'react'
 import { News } from './HackerNewsContainer'
+import { HackerNewsStyles } from '../../styles/HackerNewsStyles'
+import { FaHackerNewsSquare } from 'react-icons/fa'
+import { getTimeFromNow } from '../../helpers/date'
 
 interface HackerNewsProps {
   news: News[] | []
@@ -7,21 +10,33 @@ interface HackerNewsProps {
 
 export const HackerNews: React.FC<HackerNewsProps> = ({ news }) => {
   return (
-    <div className="news">
+    <HackerNewsStyles>
       {news.length > 0 ? (
-        <div className="news__list">
+        <div className="news-list">
           {(news as any).map(item => (
-            <div key={item.id} className="news__single">
-              <a href={item.url} target="_blank" rel="noopener noreferrer">
-                <div className="news__avatar">HN</div>
-                <p>{item.title}</p>
-              </a>
-            </div>
+            <a
+              key={item.id}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="news">
+                <div className="news__icon">
+                  <FaHackerNewsSquare />
+                </div>
+                <div className="news__content">
+                  <h3 className="news__content__title">{item.title}</h3>
+                  <p className="news__content__date">
+                    {getTimeFromNow(item.time)}
+                  </p>
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       ) : (
-        <div className="news__nodata">There are no News in here</div>
+        <div className="nodata">There are no News in here</div>
       )}
-    </div>
+    </HackerNewsStyles>
   )
 }

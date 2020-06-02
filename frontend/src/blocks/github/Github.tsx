@@ -1,9 +1,63 @@
 import React from 'react'
+import { Notification } from './GithubContainer'
+import { GithubStyles } from '../../styles/GithubStyles'
+import { getDayAndMonth } from '../../helpers/date'
+import { formatGithubReason } from '../../helpers/random'
+import { SeeMore } from '../../components/SeeMore'
 
-export const Github: React.FC = props => {
+interface GithubProps {
+  notifications: Notification[] | []
+  markAsRead: (id: string, unread: boolean) => void
+}
+
+export const Github: React.FC<GithubProps> = ({
+  notifications,
+  markAsRead
+}) => {
   return (
-    <div>
-      <p>Github</p>
-    </div>
+    <GithubStyles>
+      <div className="notifications block-overflow">
+        {notifications.length > 0 ? (
+          (notifications as any).map(not => (
+            <a
+              key={not.id}
+              href={not.url}
+              target="_blank"
+              onClick={() => markAsRead(not.id, not.unread)}
+            >
+              <div
+                className={
+                  not.unread
+                    ? 'notification__single block-single unread'
+                    : 'notification__single block-single'
+                }
+              >
+                <div>
+                  <div className="notification__single__info">
+                    <h3 className="notification__single__info__repo">
+                      {not.repository}
+                    </h3>
+                    <span className="notification__single__info__reason">
+                      {formatGithubReason(not.reason)}
+                    </span>
+                  </div>
+                  <div className="notification__single__title">
+                    <p>{not.title}</p>
+                  </div>
+                </div>
+                <div className="notification__single__date">
+                  {getDayAndMonth(not.date)}
+                </div>
+              </div>
+            </a>
+          ))
+        ) : (
+          <div className="tasks__nodata">
+            There are no notifications in here
+          </div>
+        )}
+      </div>
+      <SeeMore link={`https://github.com/notifications`} />
+    </GithubStyles>
   )
 }

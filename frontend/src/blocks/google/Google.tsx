@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { GoogleStyles } from '../../styles/GoogleStyles'
+import { FaGoogle } from 'react-icons/fa'
 
 interface GoogleProps {
   submitSearch: (query: string) => void
@@ -14,15 +16,18 @@ export const Google: React.FC<GoogleProps> = ({ submitSearch }) => {
   }
 
   return (
-    <div className="google-search">
+    <GoogleStyles>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search something ..."
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-        />
+        <div className="input-wrapper">
+          <input
+            type="text"
+            placeholder="Search on google"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+          />
+          <FaGoogle />
+        </div>
       </form>
-    </div>
+    </GoogleStyles>
   )
 }

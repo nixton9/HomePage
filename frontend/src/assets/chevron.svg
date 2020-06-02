@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36" viewBox="0 0 36 36">
+  <defs>
+    <clipPath id="clip-Prancheta_3">
+      <rect width="36" height="36"/>
+    </clipPath>
+  </defs>
+  <g id="Prancheta_3" data-name="Prancheta – 3" clip-path="url(#clip-Prancheta_3)">
+    <path id="Polígono_3" data-name="Polígono 3" d="M14.606,1.789a1,1,0,0,1,1.789,0L30.276,29.553A1,1,0,0,1,29.382,31H1.618a1,1,0,0,1-.894-1.447Z" transform="translate(34 34) rotate(-180)" fill="#fff"/>
+  </g>
+</svg>

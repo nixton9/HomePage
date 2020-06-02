@@ -1,4 +1,7 @@
 import React from 'react'
+import { WeatherIcon } from './WeatherIcon'
+import { WeatherStyles } from '../../styles/WeatherStyles'
+import { capitalize } from '../../helpers/random'
 
 interface WeatherProps {
   city: string
@@ -20,15 +23,27 @@ export const Weather: React.FC<WeatherProps> = props => {
     icon,
     temperature
   } = props
+
   return (
-    <div>
-      <h1>{city}</h1>
-      <p>{type}</p>
-      <p>{description}</p>
-      <p>{minTemperature}</p>
-      <p>{maxTemperature}</p>
-      <p>{temperature}</p>
-      <img src={`./assets/icons/${icon}@2x.png`} alt={type} />
-    </div>
+    <WeatherStyles>
+      <div className="icon">
+        <WeatherIcon iconCode={icon} />
+      </div>
+      <div className="info">
+        <h2 className="info__city">{city}</h2>
+        <h3 className="info__desc">{capitalize(description)}</h3>
+        <div className="info__temp">
+          <p>
+            <strong>Temp</strong> {Math.round(maxTemperature)}C
+          </p>
+          <p>
+            <strong>Max</strong> {Math.round(minTemperature)}C
+          </p>
+          <p>
+            <strong>Min</strong> {Math.round(temperature)}C
+          </p>
+        </div>
+      </div>
+    </WeatherStyles>
   )
 }

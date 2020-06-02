@@ -1,13 +1,22 @@
-export const currentDateToString = () => {
-    const date = new Date()
-    let month = '' + (date.getMonth() + 1)
-    let day = '' + date.getDate()
-    const year = date.getFullYear()
+import moment from 'moment'
 
-    if (month.length < 2) 
-        month = '0' + month
-    if (day.length < 2) 
-        day = '0' + day
+export const getCurrentDate = () => moment().format('YYYY-MM-D')
 
-    return [year, month, day].join('-')
+export const getCurrentDateToString = () => moment().format('dddd, D MMMM')
+
+export const getCurrentTime = () => moment().format('hh:mm')
+
+export const getCurrentPeriod = () => moment().format('a')
+
+export const getDayAndMonth = date => moment(date).format('D/MM')
+
+export const dateToString = (date, year = false) => {
+  if (year) return moment(date).format('D MMMM YYYY')
+  return moment(date).format('D MMMM')
 }
+
+export const getTimeFromNow = date =>
+  moment
+    .unix(date)
+    .startOf('hour')
+    .fromNow()

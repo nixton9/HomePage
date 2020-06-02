@@ -1,32 +1,84 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Website } from './WebsitesContainer'
+import { Modal } from '../../components/Modal'
+import { WebsitesStyles } from '../../styles/WebsitesStyles'
+import { useRecoilState } from 'recoil'
+import { websitesModalState } from '../../state/atoms'
+import { FaPlus, FaTimes } from 'react-icons/fa'
 
 interface WebsitesProps {
   websites: Website[] | []
   deleteWebsite: (id: string) => void
+  addWebsite: (url: string, name: string) => void
 }
 
 export const Websites: React.FC<WebsitesProps> = ({
   websites,
-  deleteWebsite
+  deleteWebsite,
+  addWebsite
 }) => {
+  const [isModalOpen, setIsModalOpen] = useRecoilState(websitesModalState)
+  const [url, setUrl] = useState('')
+  const [name, setName] = useState('')
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    addWebsite(url, name)
+    setUrl('')
+    setName('')
+    setTimeout(() => setIsModalOpen(false), 200)
+  }
+
   return (
-    <div className="websites">
-      {websites.length > 0 ? (
-        <div className="websites__list">
-          {(websites as any).map(website => (
-            <div key={website.id} className="websites__single">
-              <a href={website.url} target="_blank" rel="noopener noreferrer">
-                <img src={website.icon} alt={website.name} />
-                <p>{website.name}</p>
-              </a>
-              <button onClick={() => deleteWebsite(website.id)}>X</button>
-            </div>
-          ))}
+    <>
+      <WebsitesStyles>
+        {websites.length > 0 ? (
+          <div className="websites">
+            {(websites as any).map(website => (
+              <div key={website.id} className="website">
+                <a href={website.url} target="_blank" rel="noopener noreferrer">
+                  <div className="website__img">
+                    <img src={website.icon} alt={website.name} />
+                  </div>
+                  <p className="website__name">{website.name}</p>
+                </a>
+                <button
+                  className="website__delete"
+                  onClick={() => deleteWebsite(website.id)}
+                >
+                  <FaTimes />
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="websites__nodata">There are no websites in here</div>
+        )}
+        <div className="add-website" onClick={() => setIsModalOpen(true)}>
+          <FaPlus />
         </div>
-      ) : (
-        <div className="websites__nodata">There are no websites in here</div>
-      )}
-    </div>
+      </WebsitesStyles>
+      <Modal
+        open={isModalOpen}
+        title={'Add Website'}
+        closeModal={() => setIsModalOpen(false)}
+      >
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name for the website"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="URL for the website"
+            value={url}
+            onChange={e => setUrl(e.target.value)}
+          />
+          <button>Add</button>
+        </form>
+      </Modal>
+    </>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Shot, Category } from './DribbbleContainer'
+import { DribbbleStyles } from '../../styles/DribbbleStyles'
 
 interface DribbbleProps {
   shots: Shot[] | []
@@ -17,9 +18,9 @@ export const Dribbble: React.FC<DribbbleProps> = ({
   setSelectedCategory
 }) => {
   return (
-    <div className="dribbble">
+    <DribbbleStyles>
       {categories.length > 0 && (
-        <div className="dribbble_categories">
+        <div className="categories">
           {(categories as Category[]).map(cat => (
             <div
               key={cat.value ? cat.value : 'all'}
@@ -39,37 +40,38 @@ export const Dribbble: React.FC<DribbbleProps> = ({
       {shotsLoading ? (
         <div className="inner-loading">Loading shots ...</div>
       ) : shots.length > 0 ? (
-        <div className="dribbble_shots">
+        <div className="shots">
           {(shots as Shot[]).map(shot => (
             <div key={shot.image} className="shot">
               <a href={shot.url} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={shot.image}
-                  alt={shot.title}
-                  className="shot__image"
-                />
-                <h3 className="shot__title">{shot.title}</h3>
+                <div
+                  className="shot__img"
+                  style={{ backgroundImage: `url(${shot.image})` }}
+                >
+                  <div className="shot__title">
+                    <h3>{shot.title}</h3>
+                  </div>
+                </div>
               </a>
               <a
                 href={shot.authorUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src={shot.authorImage}
-                  alt={shot.authorName}
-                  className="shot__image"
-                />
-                <h5 className="shot__title">{shot.authorName}</h5>
+                <div className="shot__author">
+                  <div
+                    className="shot__author__img"
+                    style={{ backgroundImage: `url(${shot.authorImage})` }}
+                  ></div>
+                  <h5 className="shot__author__name">{shot.authorName}</h5>
+                </div>
               </a>
             </div>
           ))}
         </div>
       ) : (
-        <div className="dribbble__nodata">
-          There are no Dribbble shots in here
-        </div>
+        <div className="nodata">There are no Dribbble shots in here</div>
       )}
-    </div>
+    </DribbbleStyles>
   )
 }

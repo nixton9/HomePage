@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import { Todoist } from './Todoist'
-import { todoistKeyState } from '../../state/atoms'
+import { todoistKeyState, todoistCounterState } from '../../state/atoms'
 import { useRecoilState } from 'recoil'
+import { getDayAndMonth, getCurrentDate } from '../../helpers/date'
 import axios from 'axios'
 
 export interface ProjectInterface {
   id: number
   title: string
+  ind?: number
 }
 
 export interface TaskInterface {
@@ -21,23 +23,30 @@ export interface TaskInterface {
 
 const TodoistContainer: React.FC = () => {
   const [todoistKey] = useRecoilState(todoistKeyState)
+  const [tasksLoading, setTasksLoading] = useState(true)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [tasks, setTasks] = useState<[] | TaskInterface[]>([])
   const [projects, setProjects] = useState<[] | ProjectInterface[]>([])
+  const [todoistTaskCount, setTodoistTaskCount] = useRecoilState(
+    todoistCounterState
+  )
 
   const fetchProjects = () => {
     setLoading(true)
-    const url = `https://api.todoist.com/rest/v1/projects`
+    const url = `/api/todoist/projects/${todoistKey}`
     axios
-      .get(url, { headers: { Authorization: `Bearer ${todoistKey}` } })
+      .get(url)
       .then(res => {
         const allProjects: ProjectInterface[] = []
+        let i = 0
         res.data.forEach((proj: any) => {
           let project = {
             id: proj.id,
-            title: proj.name
+            title: proj.name,
+            ind: i
           }
+          i++
           allProjects.push(project)
         })
         setProjects(allProjects)
@@ -51,10 +60,10 @@ const TodoistContainer: React.FC = () => {
   }
 
   const fetchTasks = () => {
-    setLoading(true)
-    const url = `https://api.todoist.com/rest/v1/tasks`
+    setTasksLoading(true)
+    const url = `/api/todoist/tasks/${todoistKey}`
     axios
-      .get(url, { headers: { Authorization: `Bearer ${todoistKey}` } })
+      .get(url)
       .then(res => {
         const allTasks: TaskInterface[] = []
         res.data.forEach((item: any) => {
@@ -64,17 +73,17 @@ const TodoistContainer: React.FC = () => {
             order: item.order,
             text: item.content,
             dueDate: item.due ? item.due.date : '',
-            dueDateString: item.due ? item.due.string : ''
+            dueDateString: item.due ? getDayAndMonth(item.due.date) : ''
           }
           allTasks.push(task)
         })
         setTasks(allTasks)
-        setLoading(false)
+        setTasksLoading(false)
         setError('')
       })
       .catch(err => {
         setError('There was an error fetching Todoist tasks')
-        setLoading(false)
+        setTasksLoading(false)
       })
   }
 
@@ -82,7 +91,7 @@ const TodoistContainer: React.FC = () => {
     if (
       window.confirm('Are you sure you want to mark this task as completed?')
     ) {
-      const url = `https://api.todoist.com/rest/v1/tasks/${taskId}/close`
+      const url = `/api/todoist/tasks/close/${taskId}/${todoistKey}`
       axios
         .post(url, {}, { headers: { Authorization: `Bearer ${todoistKey}` } })
         .then(res => {
@@ -95,22 +104,13 @@ const TodoistContainer: React.FC = () => {
   }
 
   const createTask = (text: string, date: string, project: number) => {
-    const url = `https://api.todoist.com/rest/v1/tasks`
+    const url = `/api/todoist/tasks/${todoistKey}`
     axios
-      .post(
-        url,
-        {
-          content: text,
-          due_date: date,
-          project_id: project
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${todoistKey}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      )
+      .post(url, {
+        content: text,
+        due_date: date,
+        project_id: project
+      })
       .then(res => {
         fetchTasks()
       })
@@ -128,6 +128,11 @@ const TodoistContainer: React.FC = () => {
     }
   }, [todoistKey])
 
+  useEffect(() => {
+    const count = tasks.filter(task => getCurrentDate() === task.dueDate).length
+    setTodoistTaskCount(count)
+  }, [tasks])
+
   return (
     <BlockWrapper
       isLoading={loading}
@@ -140,6 +145,7 @@ const TodoistContainer: React.FC = () => {
         projects={projects}
         completeTask={completeTask}
         createTask={createTask}
+        tasksLoading={tasksLoading}
       />
     </BlockWrapper>
   )

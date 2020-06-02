@@ -1,32 +1,39 @@
 import React from 'react'
 import WeatherContainer from '../blocks/weather/WeatherContainer'
-import EmailContainer from '../blocks/gmail/EmailContainer'
-import InstagramContainer from '../blocks/instagram/InstagramContainer'
-import TodoistContainer from '../blocks/todoist/TodoistContainer'
-import GithubContainer from '../blocks/github/GithubContainer'
-import MoviesContainer from '../blocks/movies/MoviesContainer'
 import GoogleContainer from '../blocks/google/GoogleContainer'
 import WebsitesContainer from '../blocks/websites/WebsitesContainer'
-import DribbbleContainer from '../blocks/dribbble/DribbbleContainer'
-import HackerNewsContainer from '../blocks/hackernews/HackerNewsContainer'
-import Settings from './Settings'
-import { BackgroundImage } from '../styles/BackgroundImage'
-import { RecoilRoot, useRecoilState } from 'recoil'
-import { usernameState, backgroundState } from '../state/atoms'
+import DateTimeContainer from '../blocks/datetime/DateTimeContainer'
+import { MainTabs } from './MainTabs'
+import { MainStyles } from '../styles/MainStyles'
+import { MainTitle } from '../styles/MainTitle'
+import { useRecoilState } from 'recoil'
+import { usernameState } from '../state/atoms'
 require('dotenv').config()
 
 const Main: React.FC = () => {
   const [username] = useRecoilState(usernameState)
-  const [background] = useRecoilState(backgroundState)
 
   return (
-    <>
-      <BackgroundImage img={background}>
-        <h1>Homepage - {username}</h1>
-        <Settings />
-        <TodoistContainer />
-      </BackgroundImage>
-    </>
+    <MainStyles>
+      <MainTitle>Welcome {username}</MainTitle>
+      <div className="main__grid">
+        <div className="main__grid__item">
+          <DateTimeContainer />
+        </div>
+        <div className="main__grid__item">
+          <WeatherContainer />
+        </div>
+      </div>
+      <div className="main__grid">
+        <div className="main__grid__item">
+          <MainTabs />
+        </div>
+        <div className="main__grid__item">
+          <GoogleContainer />
+          <WebsitesContainer />
+        </div>
+      </div>
+    </MainStyles>
   )
 }
 

@@ -1,19 +1,22 @@
 import React, { useEffect } from 'react'
+import { Modal } from './Modal'
 import { useRecoilState } from 'recoil'
 import {
   usernameState,
   backgroundState,
   instagramUserState,
   todoistKeyState,
-  githubKeyState
+  githubKeyState,
+  settingsModalState
 } from '../state/atoms'
 
-const Settings = () => {
+export const Settings = () => {
   const [username, setUsername] = useRecoilState(usernameState)
   const [background, setBackground] = useRecoilState(backgroundState)
   const [instagramUser, setInstagramUser] = useRecoilState(instagramUserState)
   const [todoistKey, setTodoistKey] = useRecoilState(todoistKeyState)
   const [githubKey, setGithubKey] = useRecoilState(githubKeyState)
+  const [isModalOpen, setIsModalOpen] = useRecoilState(settingsModalState)
 
   const saveData = () => {
     localStorage.setItem('username', username)
@@ -21,6 +24,7 @@ const Settings = () => {
     localStorage.setItem('instagramUser', instagramUser)
     localStorage.setItem('todoistKey', todoistKey)
     localStorage.setItem('githubKey', githubKey)
+    setTimeout(() => setIsModalOpen(false), 200)
   }
 
   const getItemsFromLocalStorage = () => {
@@ -45,8 +49,11 @@ const Settings = () => {
   }, [])
 
   return (
-    <div className="settings">
-      <h2>Settings</h2>
+    <Modal
+      open={isModalOpen}
+      title={'Settings'}
+      closeModal={() => setIsModalOpen(false)}
+    >
       <input
         type="text"
         placeholder="Name"
@@ -78,8 +85,6 @@ const Settings = () => {
         onChange={e => setGithubKey(e.target.value)}
       />
       <button onClick={saveData}>Save</button>
-    </div>
+    </Modal>
   )
 }
-
-export default Settings
