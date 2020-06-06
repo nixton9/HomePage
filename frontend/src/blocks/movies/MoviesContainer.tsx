@@ -92,13 +92,9 @@ const MoviesContainer: React.FC = () => {
       .catch(err => console.log('Error getting trailer'))
   }
 
-  useEffect(() => {
-    fetchGenres()
-  }, [])
+  useEffect(fetchGenres, [])
 
-  useEffect(() => {
-    fetchMovies()
-  }, [page])
+  useEffect(fetchMovies, [page])
 
   return (
     <BlockWrapper

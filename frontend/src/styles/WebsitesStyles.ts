@@ -77,14 +77,4 @@ export const WebsitesStyles = styled.div`
       }
     }
   }
-
-  .add-website {
-    margin-top: 3rem;
-    float: right;
-    cursor: pointer;
-
-    svg {
-      font-size: 1rem;
-    }
-  }
 `

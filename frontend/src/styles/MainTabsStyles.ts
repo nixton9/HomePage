@@ -57,6 +57,7 @@ export const MainTabsStyles = styled.div`
 
       &.active {
         display: block;
+        min-height: 20rem;
       }
 
       .block-overflow {

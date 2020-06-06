@@ -16,7 +16,6 @@ interface WeatherProps {
 export const Weather: React.FC<WeatherProps> = props => {
   const {
     city,
-    type,
     description,
     minTemperature,
     maxTemperature,

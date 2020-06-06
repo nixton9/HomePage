@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import { Todoist } from './Todoist'
 import { todoistKeyState, todoistCounterState } from '../../state/atoms'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { getDayAndMonth, getCurrentDate } from '../../helpers/date'
 import axios from 'axios'
 
@@ -22,15 +22,13 @@ export interface TaskInterface {
 }
 
 const TodoistContainer: React.FC = () => {
-  const [todoistKey] = useRecoilState(todoistKeyState)
+  const todoistKey = useRecoilValue(todoistKeyState)
   const [tasksLoading, setTasksLoading] = useState(true)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [tasks, setTasks] = useState<[] | TaskInterface[]>([])
   const [projects, setProjects] = useState<[] | ProjectInterface[]>([])
-  const [todoistTaskCount, setTodoistTaskCount] = useRecoilState(
-    todoistCounterState
-  )
+  const setTodoistTaskCount = useSetRecoilState(todoistCounterState)
 
   const fetchProjects = () => {
     setLoading(true)
@@ -87,6 +85,15 @@ const TodoistContainer: React.FC = () => {
       })
   }
 
+  const fetchAll = () => {
+    if (todoistKey) {
+      fetchProjects()
+      fetchTasks()
+    } else {
+      setError('You need to set your Todoist key on the settings')
+    }
+  }
+
   const completeTask = (taskId: number) => {
     if (
       window.confirm('Are you sure you want to mark this task as completed?')
@@ -111,27 +118,16 @@ const TodoistContainer: React.FC = () => {
         due_date: date,
         project_id: project
       })
-      .then(res => {
-        fetchTasks()
-      })
-      .catch(err => {
-        setError('There was an error adding this task')
-      })
+      .then(res => fetchTasks())
+      .catch(err => setError('There was an error adding this task'))
   }
 
-  useEffect(() => {
-    if (todoistKey) {
-      fetchProjects()
-      fetchTasks()
-    } else {
-      setError('You need to set your Todoist key on the settings')
-    }
-  }, [todoistKey])
+  useEffect(fetchAll, [todoistKey])
 
   useEffect(() => {
     const count = tasks.filter(task => getCurrentDate() === task.dueDate).length
     setTodoistTaskCount(count)
-  }, [tasks])
+  }, [tasks, setTodoistTaskCount])
 
   return (
     <BlockWrapper
@@ -146,6 +142,7 @@ const TodoistContainer: React.FC = () => {
         completeTask={completeTask}
         createTask={createTask}
         tasksLoading={tasksLoading}
+        reload={fetchAll}
       />
     </BlockWrapper>
   )

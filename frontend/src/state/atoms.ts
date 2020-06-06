@@ -10,6 +10,11 @@ export const backgroundState = atom({
   default: ''
 })
 
+export const backgroundOpacityState = atom({
+  key: 'backgroundOpacity',
+  default: 0.6
+})
+
 export const instagramUserState = atom({
   key: 'instagramUser',
   default: ''

@@ -1,52 +1,45 @@
 import React from 'react'
+import Tooltip from 'react-tooltip-lite'
 import { SideBarStyles } from '../styles/SideBarStyles'
-import {
-  FaHome,
-  FaDribbble,
-  FaHackerNewsSquare,
-  FaPlay,
-  FaRegSun
-} from 'react-icons/fa'
-import {
-  TiHomeOutline,
-  TiSocialDribbble,
-  TiDeviceLaptop,
-  TiCogOutline,
-  TiFilm
-} from 'react-icons/ti'
 import { FiTv, FiHome, FiSettings, FiMonitor, FiImage } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { settingsModalState } from '../state/atoms'
 
 export const SideBar: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useRecoilState(settingsModalState)
-
-  const openModal = () => {}
+  const setIsModalOpen = useSetRecoilState(settingsModalState)
 
   return (
     <SideBarStyles className="nav">
       <div className="nav__items home">
         <div className="nav__items__single-item">
           <Link to="/">
-            <FiHome />
+            <Tooltip content="Home" direction={'up'} arrow={false}>
+              <FiHome />
+            </Tooltip>
           </Link>
         </div>
       </div>
       <div className="nav__items main">
         <div className="nav__items__single-item">
           <Link to="/dribbble">
-            <FiImage />
+            <Tooltip content="Dribbble" direction={'up'} arrow={false}>
+              <FiImage />
+            </Tooltip>
           </Link>
         </div>
         <div className="nav__items__single-item">
           <Link to="/hackernews">
-            <FiMonitor />
+            <Tooltip content="Hacker News" direction={'up'} arrow={false}>
+              <FiMonitor />
+            </Tooltip>
           </Link>
         </div>
         <div className="nav__items__single-item">
           <Link to="/movies">
-            <FiTv />
+            <Tooltip content="Movies" direction={'up'} arrow={false}>
+              <FiTv />
+            </Tooltip>
           </Link>
         </div>
       </div>
@@ -54,7 +47,9 @@ export const SideBar: React.FC = () => {
         className="nav__items__single-item settings"
         onClick={() => setIsModalOpen(true)}
       >
-        <FiSettings />
+        <Tooltip content="Settings" direction={'up'} arrow={false}>
+          <FiSettings />
+        </Tooltip>
       </div>
     </SideBarStyles>
   )

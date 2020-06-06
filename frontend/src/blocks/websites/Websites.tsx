@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Website } from './WebsitesContainer'
 import { Modal } from '../../components/Modal'
+import { Actions } from '../../components/Actions'
 import { WebsitesStyles } from '../../styles/WebsitesStyles'
 import { useRecoilState } from 'recoil'
 import { websitesModalState } from '../../state/atoms'
-import { FaPlus, FaTimes } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 
 interface WebsitesProps {
   websites: Website[] | []
@@ -54,9 +55,7 @@ export const Websites: React.FC<WebsitesProps> = ({
         ) : (
           <div className="websites__nodata">There are no websites in here</div>
         )}
-        <div className="add-website" onClick={() => setIsModalOpen(true)}>
-          <FaPlus />
-        </div>
+        <Actions openModal={() => setIsModalOpen(true)} />
       </WebsitesStyles>
       <Modal
         open={isModalOpen}

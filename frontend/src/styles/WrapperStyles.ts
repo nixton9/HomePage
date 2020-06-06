@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 interface WrapperStylesProps {
   img: string
+  opacity: number
 }
 
 export const WrapperStyles = styled.div<WrapperStylesProps>`
@@ -19,7 +20,7 @@ export const WrapperStyles = styled.div<WrapperStylesProps>`
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.63);
+    background-color: rgba(0, 0, 0, ${props => props.opacity});
   }
 
   .content {

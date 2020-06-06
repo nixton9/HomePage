@@ -45,6 +45,24 @@ export const ModalStyles = styled.div`
         width: 90%;
       }
 
+      input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 1.4rem;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 2rem;
+        height: 2rem;
+        background: ${theme.lighterGrey};
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
       button {
         display: block;
         margin: ${theme.spacingXS} auto 0 auto;

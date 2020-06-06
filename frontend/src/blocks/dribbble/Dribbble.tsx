@@ -1,6 +1,7 @@
 import React from 'react'
 import { Shot, Category } from './DribbbleContainer'
 import { DribbbleStyles } from '../../styles/DribbbleStyles'
+import { LoadingSpinner } from '../../components/LoadingSpinner'
 
 interface DribbbleProps {
   shots: Shot[] | []
@@ -38,7 +39,9 @@ export const Dribbble: React.FC<DribbbleProps> = ({
       )}
 
       {shotsLoading ? (
-        <div className="inner-loading">Loading shots ...</div>
+        <div className="inner-loading">
+          <LoadingSpinner />
+        </div>
       ) : shots.length > 0 ? (
         <div className="shots">
           {(shots as Shot[]).map(shot => (

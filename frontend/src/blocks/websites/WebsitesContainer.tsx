@@ -12,7 +12,6 @@ export interface Website {
 
 const WebsitesContainer: React.FC = () => {
   const [websites, setWebsites] = useState<Website[] | []>([])
-  const [showForm, setShowForm] = useState(false)
 
   const addWebsite = (url, name) => {
     const finalUrl = url.replace(/(^\w+:|^)\/\//, '')

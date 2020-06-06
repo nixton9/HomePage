@@ -1,8 +1,8 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Gmail } from './Gmail'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { mailCounterState } from '../../state/atoms'
 
 const GmailContainer: React.FC = () => {
@@ -18,7 +18,7 @@ const GmailContainer: React.FC = () => {
   const [messagesIds, setMessagesIds] = useState([])
   const [emails, setEmails] = useState([])
   const [error, setError] = useState(false)
-  const [unreadMailCount, setUnreadMailCount] = useRecoilState(mailCounterState)
+  const setUnreadMailCount = useSetRecoilState(mailCounterState)
 
   const handleAuth = () => {
     return gapi.auth2
@@ -48,7 +48,7 @@ const GmailContainer: React.FC = () => {
       )
   }
 
-  const listMessages = () => {
+  const listMessages = useCallback(() => {
     setLoading(true)
     return gapi.client.gmail.users.messages
       .list({ userId: userID, maxResults: 15, q: 'category: primary' })
@@ -66,7 +66,7 @@ const GmailContainer: React.FC = () => {
           setMessagesIds([])
         }
       )
-  }
+  }, [userID])
 
   const listEmails = () => {
     setEmails([])
@@ -113,6 +113,7 @@ const GmailContainer: React.FC = () => {
   }
 
   useEffect(() => {
+    setLoading(true)
     gapi.load('client:auth2', function() {
       gapi.auth2.init({ client_id: CLIENT_ID }).then(googleAuth => {
         loadClient()
@@ -142,47 +143,44 @@ const GmailContainer: React.FC = () => {
         }
       })
     })
+    setLoading(false)
   }, [CLIENT_ID, signedIn])
 
   useEffect(() => {
     if (clientLoaded && userID) {
-      listMessages().then(() => listEmails())
+      listMessages()
     }
-  }, [clientLoaded, userID])
+  }, [clientLoaded, userID, listMessages])
 
-  useEffect(() => {
-    if (messagesIds.length > 0) {
-      listEmails()
-    }
-  }, [messagesIds])
+  useEffect(listEmails, [messagesIds])
 
   useEffect(() => {
     const count = emails.filter(email => email.unRead).length
     setUnreadMailCount(count)
-  }, [emails])
+  }, [emails, setUnreadMailCount])
 
-  return (
+  return signedIn ? (
     <BlockWrapper
       isLoading={loading}
       hasError={Boolean(error)}
       error={error}
       name="Email"
     >
-      {signedIn ? (
-        <Gmail
-          emails={emails.sort(
-            (a, b) => parseInt(b.internalDate) - parseInt(a.internalDate)
-          )}
-          handleLogout={handleLogout}
-          markAsRead={markAsRead}
-          reloadEmails={listMessages}
-          userEmail={userEmail}
-        />
-      ) : (
-        <button className="login" onClick={handleAuth}>
-          Login
-        </button>
-      )}
+      <Gmail
+        emails={emails.sort(
+          (a, b) => parseInt(b.internalDate) - parseInt(a.internalDate)
+        )}
+        handleLogout={handleLogout}
+        markAsRead={markAsRead}
+        reloadEmails={listMessages}
+        userEmail={userEmail}
+      />
+    </BlockWrapper>
+  ) : (
+    <BlockWrapper isLoading={false} hasError={false} error={''} name="Email">
+      <div className="login">
+        <button onClick={handleAuth}>Login to Gmail</button>
+      </div>
     </BlockWrapper>
   )
 }

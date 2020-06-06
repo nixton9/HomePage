@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { HackerNews } from './HackerNews'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import axios from 'axios'
@@ -36,7 +36,7 @@ const HackerNewsContainer: React.FC = () => {
     )
   }
 
-  const getNews = () => {
+  const fetchtNews = useCallback(() => {
     setLoading(true)
     const allNews: any = []
     newsIds.forEach(id => {
@@ -58,7 +58,7 @@ const HackerNewsContainer: React.FC = () => {
       )
     })
     setLoading(false)
-  }
+  }, [newsIds])
 
   useEffect(() => {
     getNewsIds()
@@ -66,9 +66,9 @@ const HackerNewsContainer: React.FC = () => {
 
   useEffect(() => {
     if (newsIds.length > 0) {
-      getNews()
+      fetchtNews()
     }
-  }, [newsIds])
+  }, [newsIds, fetchtNews])
 
   return (
     <BlockWrapper

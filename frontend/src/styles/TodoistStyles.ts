@@ -18,6 +18,7 @@ export const TodoistStyles = styled.div`
       background-position: right center;
       background-size: 10px;
       min-width: 11rem;
+      cursor: pointer;
     }
   }
 
@@ -39,16 +40,6 @@ export const TodoistStyles = styled.div`
         font-weight: ${theme.fontExtraBold};
         font-size: 0.7rem;
       }
-    }
-  }
-
-  .add-task {
-    margin-top: 3rem;
-    float: right;
-    cursor: pointer;
-
-    svg {
-      font-size: 1rem;
     }
   }
 `

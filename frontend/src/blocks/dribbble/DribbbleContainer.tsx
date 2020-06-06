@@ -67,12 +67,9 @@ const DribbbleContainer: React.FC = () => {
 
   useEffect(() => {
     fetchCategories()
-    console.log('here')
   }, [])
 
-  useEffect(() => {
-    fetchData()
-  }, [selectedCategory])
+  useEffect(fetchData, [selectedCategory])
 
   return (
     <BlockWrapper

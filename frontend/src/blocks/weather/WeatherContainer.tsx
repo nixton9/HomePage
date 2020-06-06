@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Weather } from './Weather'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import axios from 'axios'
@@ -18,27 +18,30 @@ const WeatherContainer: React.FC = () => {
     icon: ''
   })
 
-  const fetchData = (position: any) => {
-    const url = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=${WEATHER_KEY}`
-    axios
-      .get(url)
-      .then(res => {
-        setData({
-          city: res.data.name,
-          type: res.data.weather[0].main,
-          description: res.data.weather[0].description,
-          temperature: res.data.main.temp,
-          minTemperature: res.data.main.temp_min,
-          maxTemperature: res.data.main.temp_max,
-          icon: res.data.weather[0].icon
+  const fetchData = useCallback(
+    (position: any) => {
+      const url = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=${WEATHER_KEY}`
+      axios
+        .get(url)
+        .then(res => {
+          setData({
+            city: res.data.name,
+            type: res.data.weather[0].main,
+            description: res.data.weather[0].description,
+            temperature: res.data.main.temp,
+            minTemperature: res.data.main.temp_min,
+            maxTemperature: res.data.main.temp_max,
+            icon: res.data.weather[0].icon
+          })
+          setLoading(false)
+          setError('')
         })
-        setLoading(false)
-        setError('')
-      })
-      .catch(err => {
-        setError('There was an error fetching the Weather forecast')
-      })
-  }
+        .catch(err => {
+          setError('There was an error fetching the Weather forecast')
+        })
+    },
+    [WEATHER_KEY]
+  )
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -46,7 +49,7 @@ const WeatherContainer: React.FC = () => {
     } else {
       setError('There was an error getting your current location')
     }
-  }, [])
+  }, [fetchData])
 
   return (
     <BlockWrapper

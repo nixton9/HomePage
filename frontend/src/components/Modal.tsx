@@ -17,13 +17,13 @@ export const Modal: React.FC<ModalProps> = ({
   const modalOverlay = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (modalOverlay && modalOverlay.current) {
-      modalOverlay.current.addEventListener('click', closeModal)
+    const overlayCurrent = modalOverlay.current
+    if (modalOverlay && overlayCurrent) {
+      overlayCurrent.addEventListener('click', closeModal)
 
-      return () =>
-        modalOverlay.current?.removeEventListener('click', closeModal)
+      return () => overlayCurrent?.removeEventListener('click', closeModal)
     }
-  }, [])
+  }, [closeModal])
 
   return (
     <>

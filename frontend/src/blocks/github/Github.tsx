@@ -1,18 +1,20 @@
 import React from 'react'
 import { Notification } from './GithubContainer'
+import { Actions } from '../../components/Actions'
 import { GithubStyles } from '../../styles/GithubStyles'
 import { getDayAndMonth } from '../../helpers/date'
 import { formatGithubReason } from '../../helpers/random'
-import { SeeMore } from '../../components/SeeMore'
 
 interface GithubProps {
   notifications: Notification[] | []
   markAsRead: (id: string, unread: boolean) => void
+  reload: () => void
 }
 
 export const Github: React.FC<GithubProps> = ({
   notifications,
-  markAsRead
+  markAsRead,
+  reload
 }) => {
   return (
     <GithubStyles>
@@ -23,6 +25,7 @@ export const Github: React.FC<GithubProps> = ({
               key={not.id}
               href={not.url}
               target="_blank"
+              rel="noopener noreferrer"
               onClick={() => markAsRead(not.id, not.unread)}
             >
               <div
@@ -57,7 +60,7 @@ export const Github: React.FC<GithubProps> = ({
           </div>
         )}
       </div>
-      <SeeMore link={`https://github.com/notifications`} />
+      <Actions link={`https://github.com/notifications`} reload={reload} />
     </GithubStyles>
   )
 }

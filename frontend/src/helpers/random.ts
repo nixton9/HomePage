@@ -11,7 +11,7 @@ export const extractEmailInfo = str => {
   const stringArr = string.split(' ')
   const nameArr: string[] = []
   const emailArr: string[] = []
-  stringArr.map(s => {
+  stringArr.forEach(s => {
     if (!s.includes('@')) {
       nameArr.push(s)
     } else {

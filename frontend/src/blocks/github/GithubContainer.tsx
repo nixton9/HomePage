@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import { Github } from './Github'
 import { githubKeyState, githubCounterState } from '../../state/atoms'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import axios from 'axios'
 
 export interface Notification {
@@ -16,21 +16,19 @@ export interface Notification {
 }
 
 const GithubContainer: React.FC = () => {
-  const [githubKey] = useRecoilState(githubKeyState)
+  const githubKey = useRecoilValue(githubKeyState)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [notifications, setNotifications] = useState<Notification[] | []>([])
-  const [unreadGithubCount, setUnreadGithubCount] = useRecoilState(
-    githubCounterState
-  )
+  const setUnreadGithubCount = useSetRecoilState(githubCounterState)
 
-  const fetchNotifications = () => {
+  const fetchNotifications = useCallback(() => {
     setLoading(true)
+    setNotifications([])
     const url = `https://api.github.com/notifications?all=true`
     axios
       .get(url, { headers: { Authorization: `Bearer ${githubKey}` } })
       .then(res => {
-        const allNotifications: Notification[] = []
         res.data.forEach(not => {
           axios
             .get(not.subject.url, {
@@ -60,7 +58,7 @@ const GithubContainer: React.FC = () => {
         setError('There was an error fetching Github notifications')
         setLoading(false)
       })
-  }
+  }, [githubKey])
 
   const markAsRead = (id, unread) => {
     if (unread) {
@@ -83,12 +81,12 @@ const GithubContainer: React.FC = () => {
     } else {
       setError('You need to set a Github key on the settings')
     }
-  }, [githubKey])
+  }, [githubKey, fetchNotifications])
 
   useEffect(() => {
     const count = notifications.filter(not => not.unread).length
     setUnreadGithubCount(count)
-  }, [notifications])
+  }, [notifications, setUnreadGithubCount])
 
   return (
     <BlockWrapper
@@ -97,7 +95,11 @@ const GithubContainer: React.FC = () => {
       error={error}
       name="Github"
     >
-      <Github notifications={notifications} markAsRead={markAsRead} />
+      <Github
+        notifications={notifications}
+        markAsRead={markAsRead}
+        reload={fetchNotifications}
+      />
     </BlockWrapper>
   )
 }

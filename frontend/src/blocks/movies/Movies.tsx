@@ -1,6 +1,7 @@
 import React from 'react'
 import { MovieInterface, GenreInterface } from './MoviesContainer'
 import { MoviesStyles } from '../../styles/MoviesStyles'
+import { LoadingSpinner } from '../../components/LoadingSpinner'
 import { dateToString } from '../../helpers/date'
 
 interface MoviesProps {
@@ -44,7 +45,9 @@ export const Movies: React.FC<MoviesProps> = ({
       </div>
       <div className="movies">
         {moviesLoading ? (
-          <div className="inner-loading">Loading movies ...</div>
+          <div className="inner-loading">
+            <LoadingSpinner />
+          </div>
         ) : allMovies.length > 0 ? (
           (allMovies as any).map(movie => (
             <div

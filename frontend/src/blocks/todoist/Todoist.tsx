@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { ProjectInterface, TaskInterface } from './TodoistContainer'
 import { ProjectsSelect } from './ProjectsSelect'
+import { Modal } from '../../components/Modal'
+import { Actions } from '../../components/Actions'
+import { LoadingSpinner } from '../../components/LoadingSpinner'
 import { TodoistStyles } from '../../styles/TodoistStyles'
 import { getCurrentDate } from '../../helpers/date'
-import { Modal } from '../../components/Modal'
 import { useRecoilState } from 'recoil'
 import { todoistModalState } from '../../state/atoms'
-import { FaPlus } from 'react-icons/fa'
 
 interface TodoistProps {
   projects: ProjectInterface[] | []
@@ -14,6 +15,7 @@ interface TodoistProps {
   completeTask: (taskId: number) => void
   createTask: (text: string, date: string, project: number) => void
   tasksLoading: boolean
+  reload: () => void
 }
 
 export const Todoist: React.FC<TodoistProps> = ({
@@ -21,7 +23,8 @@ export const Todoist: React.FC<TodoistProps> = ({
   projects,
   completeTask,
   createTask,
-  tasksLoading
+  tasksLoading,
+  reload
 }) => {
   const [selectedProject, setSelectedProject] = useState(0)
   const [textInput, setTextInput] = useState('')
@@ -42,9 +45,10 @@ export const Todoist: React.FC<TodoistProps> = ({
   let visibleTasks =
     tasks.length > 0
       ? tasks
-          .filter(task => task.projectId == selectedProject)
+          .filter(task => Number(task.projectId) === Number(selectedProject))
           .sort((a, b) => a.order - b.order)
       : []
+
   return (
     <>
       <TodoistStyles>
@@ -55,7 +59,9 @@ export const Todoist: React.FC<TodoistProps> = ({
             setSelectedProject={setSelectedProject}
           />
           {tasksLoading ? (
-            <div className="inner-loading">Loading tasks...</div>
+            <div className="inner-loading">
+              <LoadingSpinner />
+            </div>
           ) : (
             <div className="tasks">
               {visibleTasks.length > 0 ? (
@@ -81,9 +87,7 @@ export const Todoist: React.FC<TodoistProps> = ({
             </div>
           )}
         </div>
-        <div className="add-task" onClick={() => setIsModalOpen(true)}>
-          <FaPlus />
-        </div>
+        <Actions reload={reload} openModal={() => setIsModalOpen(true)} />
       </TodoistStyles>
       <Modal
         open={isModalOpen}

@@ -8,7 +8,7 @@ import {
 } from '../../helpers/date'
 
 const DateTimeContainer: React.FC = () => {
-  const [date, setDate] = useState(getCurrentDateToString())
+  const [date] = useState(getCurrentDateToString())
   const [period, setPeriod] = useState(getCurrentPeriod())
   const [time, setTime] = useState(getCurrentTime())
 

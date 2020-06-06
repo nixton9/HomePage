@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import GmailContainer from '../blocks/gmail/GmailContainer'
 import TodoistContainer from '../blocks/todoist/TodoistContainer'
 import GithubContainer from '../blocks/github/GithubContainer'
+import Tooltip from 'react-tooltip-lite'
 import { MainTabsStyles } from '../styles/MainTabsStyles'
 import { FiMail, FiFileText } from 'react-icons/fi'
 import { FaGithub } from 'react-icons/fa'
@@ -46,7 +47,9 @@ export const MainTabs: React.FC = () => {
           ) : (
             ''
           )}
-          <FiMail />
+          <Tooltip content="Gmail" direction={'up'} arrow={false}>
+            <FiMail />
+          </Tooltip>
         </div>
         <div
           className={
@@ -61,7 +64,9 @@ export const MainTabs: React.FC = () => {
           ) : (
             ''
           )}
-          <FaGithub />
+          <Tooltip content="Github" direction={'up'} arrow={false}>
+            <FaGithub />
+          </Tooltip>
         </div>
         <div
           className={
@@ -76,7 +81,9 @@ export const MainTabs: React.FC = () => {
           ) : (
             ''
           )}
-          <FiFileText />
+          <Tooltip content="Todoist" direction={'up'} arrow={false}>
+            <FiFileText />
+          </Tooltip>
         </div>
       </div>
       <div className="tabs__header">

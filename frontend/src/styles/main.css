@@ -22,6 +22,24 @@ a {
   text-decoration: none;
 }
 
+.react-tooltip-lite {
+  background: rgba(255,255,255,.17);
+  color: white;
+  border-radius: 8px;
+  transform: translateY(-.35rem);
+}
+
+.inner-loading {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page .inner-loading {
+  min-height: 70vh;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }

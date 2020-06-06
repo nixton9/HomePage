@@ -10,7 +10,7 @@ export const SideBarStyles = styled.nav`
 
   .nav__items  {
     &.main {
-      svg {
+      .nav__items__single-item {
         margin: 3rem 0;
       }
     }

@@ -5,7 +5,7 @@ import DribbbleContainer from './blocks/dribbble/DribbbleContainer'
 import HackerNewsContainer from './blocks/hackernews/HackerNewsContainer'
 import MoviesContainer from './blocks/movies/MoviesContainer'
 import { RecoilRoot } from 'recoil'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 require('dotenv').config()
 
 const App: React.FC = () => {

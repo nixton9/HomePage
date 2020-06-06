@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-export const getCurrentDate = () => moment().format('YYYY-MM-D')
+export const getCurrentDate = () => moment().format('YYYY-MM-DD')
 
 export const getCurrentDateToString = () => moment().format('dddd, D MMMM')
 

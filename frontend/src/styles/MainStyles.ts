@@ -3,8 +3,10 @@ import { theme } from './theme'
 
 export const MainStyles = styled.div`
   width: 100%;
-  padding: ${theme.spacingM} ${theme.spacingL} ${theme.spacingXS}
-    ${theme.spacingL};
+  padding-top: ${theme.spacingM};
+  padding-right: ${theme.spacingL};
+  padding-bottom: ${theme.spacingXS};
+  padding-left: ${theme.spacingL};
   color: ${theme.white};
 
   .main__grid {

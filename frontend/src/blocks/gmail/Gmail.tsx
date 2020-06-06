@@ -2,7 +2,7 @@ import React from 'react'
 import { GmailStyles } from '../../styles/GmailStyles'
 import { extractEmailInfo, removeEmojisFromString } from '../../helpers/random'
 import { getDayAndMonth } from '../../helpers/date'
-import { SeeMore } from '../../components/SeeMore'
+import { Actions } from '../../components/Actions'
 
 interface EmailProps {
   emails: {
@@ -70,9 +70,11 @@ export const Gmail: React.FC<EmailProps> = ({
         ))}
       </div>
 
-      <SeeMore link={`https://mail.google.com/mail/u/?authuser=${userEmail}`} />
-      <button onClick={reloadEmails}>Reload</button>
-      <button onClick={handleLogout}>Log Out</button>
+      <Actions
+        link={`https://mail.google.com/mail/u/?authuser=${userEmail}`}
+        reload={reloadEmails}
+        logout={handleLogout}
+      />
     </GmailStyles>
   )
 }
