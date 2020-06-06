@@ -34,7 +34,7 @@ export const Gmail: React.FC<EmailProps> = ({
         {emails.map(email => (
           <a
             key={email.id}
-            href={`https://mail.google.com/mail/u/0/#all/${email.threadId}`}
+            href={`https://mail.google.com/mail/u/?authuser=${userEmail}#all/${email.threadId}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => markAsRead(email.id)}
