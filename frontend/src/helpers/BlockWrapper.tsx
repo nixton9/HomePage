@@ -10,6 +10,7 @@ interface BlockWrapperProps {
   children: React.ReactNode
   name: string
   page?: boolean
+  noMinHeight?: boolean
 }
 
 export const BlockWrapper: React.FC<BlockWrapperProps> = ({
@@ -18,10 +19,11 @@ export const BlockWrapper: React.FC<BlockWrapperProps> = ({
   error,
   children,
   name,
-  page
+  page,
+  noMinHeight
 }) => {
   return (
-    <BlockStyles>
+    <BlockStyles className={noMinHeight ? 'no-minHeight' : ''}>
       <div className={page ? 'page' : 'block'}>
         {page && <MainTitle>{name}</MainTitle>}
         {hasError ? (

@@ -36,7 +36,7 @@ export const Websites: React.FC<WebsitesProps> = ({
         {websites.length > 0 ? (
           <div className="websites">
             {(websites as any).map(website => (
-              <div key={website.id} className="website">
+              <div key={website.id} className="website translate-top-on-hover">
                 <a href={website.url} target="_blank" rel="noopener noreferrer">
                   <div className="website__img">
                     <img src={website.icon} alt={website.name} />

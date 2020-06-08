@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const MainStyles = styled.div`
   width: 100%;
   padding-top: ${theme.spacingM};
-  padding-right: ${theme.spacingL};
   padding-bottom: ${theme.spacingXS};
-  padding-left: ${theme.spacingL};
+  padding-right: 15rem;
+  padding-left: 15rem;
   color: ${theme.white};
 
   .main__grid {
@@ -16,6 +16,32 @@ export const MainStyles = styled.div`
 
     &__item {
       max-width: 45rem;
+    }
+  }
+
+  @media ${device.desktopL} {
+    padding-right: 11rem;
+    padding-left: 11rem;
+  }
+
+  @media ${device.desktop} {
+    padding-right: ${theme.spacingL};
+    padding-left: ${theme.spacingL};
+  }
+
+  @media ${device.laptopL} {
+    padding-left: ${theme.spacingM};
+
+    .main__grid__item {
+      max-width: 41rem;
+    }
+  }
+
+  @media ${device.laptop} {
+    padding-right: ${theme.spacingM};
+
+    .main__grid__item {
+      max-width: 33rem;
     }
   }
 `

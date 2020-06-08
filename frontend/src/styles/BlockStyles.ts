@@ -1,15 +1,26 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const BlockStyles = styled.div`
   width: 100%;
-  height: 100%;
   min-height: inherit;
+  &.no-minHeight {
+    min-height: 0;
+    .block {
+      min-height: 0;
+    }
+  }
 
   .page {
-    padding: ${theme.spacingM} ${theme.spacingS} ${theme.spacingXS}
-      ${theme.spacingL};
+    padding-top: ${theme.spacingM};
+    padding-right: ${theme.spacingS};
+    padding-bottom: ${theme.spacingXS};
+    padding-left: ${theme.spacingL};
     max-height: 100vh;
+
+    @media ${device.laptopL} {
+      padding-left: ${theme.spacingM};
+    }
   }
 
   .block {

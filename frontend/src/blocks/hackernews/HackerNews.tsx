@@ -20,7 +20,7 @@ export const HackerNews: React.FC<HackerNewsProps> = ({ news }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="news">
+              <div className="news translate-top-on-hover">
                 <div className="news__icon">
                   <FaHackerNewsSquare />
                 </div>

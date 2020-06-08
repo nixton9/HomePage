@@ -2,49 +2,70 @@ import React from 'react'
 import Tooltip from 'react-tooltip-lite'
 import { SideBarStyles } from '../styles/SideBarStyles'
 import { FiTv, FiHome, FiSettings, FiMonitor, FiImage } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
+import { NavLink } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 import { settingsModalState } from '../state/atoms'
 
 export const SideBar: React.FC = () => {
-  const setIsModalOpen = useSetRecoilState(settingsModalState)
+  const [isModalOpen, setIsModalOpen] = useRecoilState(settingsModalState)
 
   return (
     <SideBarStyles className="nav">
       <div className="nav__items home">
         <div className="nav__items__single-item">
-          <Link to="/">
+          <NavLink
+            exact
+            to="/"
+            className="enlighten-on-hover"
+            activeClassName="active"
+          >
             <Tooltip content="Home" direction={'up'} arrow={false}>
               <FiHome />
             </Tooltip>
-          </Link>
+          </NavLink>
         </div>
       </div>
       <div className="nav__items main">
         <div className="nav__items__single-item">
-          <Link to="/dribbble">
+          <NavLink
+            to="/dribbble"
+            className="enlighten-on-hover"
+            activeClassName="active"
+          >
             <Tooltip content="Dribbble" direction={'up'} arrow={false}>
               <FiImage />
             </Tooltip>
-          </Link>
+          </NavLink>
         </div>
         <div className="nav__items__single-item">
-          <Link to="/hackernews">
+          <NavLink
+            to="/hackernews"
+            className="enlighten-on-hover"
+            activeClassName="active"
+          >
             <Tooltip content="Hacker News" direction={'up'} arrow={false}>
               <FiMonitor />
             </Tooltip>
-          </Link>
+          </NavLink>
         </div>
         <div className="nav__items__single-item">
-          <Link to="/movies">
+          <NavLink
+            to="/movies"
+            className="enlighten-on-hover"
+            activeClassName="active"
+          >
             <Tooltip content="Movies" direction={'up'} arrow={false}>
               <FiTv />
             </Tooltip>
-          </Link>
+          </NavLink>
         </div>
       </div>
       <div
-        className="nav__items__single-item settings"
+        className={
+          isModalOpen
+            ? 'nav__items__single-item enlighten-on-hover active'
+            : 'nav__items__single-item enlighten-on-hover'
+        }
         onClick={() => setIsModalOpen(true)}
       >
         <Tooltip content="Settings" direction={'up'} arrow={false}>

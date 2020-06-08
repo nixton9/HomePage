@@ -20,14 +20,14 @@ export const Actions: React.FC<ActionsProps> = ({
   <ActionsStyles>
     <div className="left">
       {reload && (
-        <span className="reload" onClick={reload}>
+        <span className="reload rotate-on-hover" onClick={reload}>
           <Tooltip content="Reload" direction={'up'} arrow={false}>
             <FaSyncAlt />
           </Tooltip>
         </span>
       )}
       {logout && (
-        <span className="logout" onClick={logout}>
+        <span className="logout translate-right-on-hover" onClick={logout}>
           <Tooltip content="Log out" direction={'up'} arrow={false}>
             <FaSignOutAlt />
           </Tooltip>
@@ -47,7 +47,7 @@ export const Actions: React.FC<ActionsProps> = ({
         </a>
       )}
       {openModal && (
-        <span className="openmodal" onClick={openModal}>
+        <span className="openmodal rotate-on-hover" onClick={openModal}>
           <Tooltip content="Add" direction={'up'} arrow={false}>
             <FaPlus />
           </Tooltip>

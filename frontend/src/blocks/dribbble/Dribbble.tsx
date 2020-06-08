@@ -27,8 +27,8 @@ export const Dribbble: React.FC<DribbbleProps> = ({
               key={cat.value ? cat.value : 'all'}
               className={
                 cat.value === selectedCategory
-                  ? 'category selected'
-                  : 'category'
+                  ? 'category enlight-on-hover selected'
+                  : 'category enlighten-on-hover'
               }
               onClick={() => setSelectedCategory(cat.value)}
             >
@@ -63,10 +63,12 @@ export const Dribbble: React.FC<DribbbleProps> = ({
               >
                 <div className="shot__author">
                   <div
-                    className="shot__author__img"
+                    className="shot__author__img rotate-on-hover"
                     style={{ backgroundImage: `url(${shot.authorImage})` }}
                   ></div>
-                  <h5 className="shot__author__name">{shot.authorName}</h5>
+                  <h5 className="shot__author__name translate-right-on-hover">
+                    {shot.authorName}
+                  </h5>
                 </div>
               </a>
             </div>

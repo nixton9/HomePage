@@ -23,10 +23,10 @@ a {
 }
 
 .react-tooltip-lite {
-  background: rgba(255,255,255,.17);
+  background: rgba(255, 255, 255, 0.17);
   color: white;
   border-radius: 8px;
-  transform: translateY(-.35rem);
+  transform: translateY(-0.35rem);
 }
 
 .inner-loading {
@@ -38,6 +38,36 @@ a {
 }
 .page .inner-loading {
   min-height: 70vh;
+}
+
+.rotate-on-hover,
+.rotate-on-hover svg,
+.translate-right-on-hover,
+.translate-right-on-hover svg,
+.translate-top-on-hover,
+.enlighten-on-hover,
+.enlighten-on-hover svg {
+  transition: all 0.4s ease;
+}
+
+.translate-right-on-hover:hover,
+.translate-right-on-hover:hover svg {
+  transform: translateX(0.3rem);
+}
+
+.translate-top-on-hover:hover {
+  transform: translateY(-0.3rem);
+}
+
+.rotate-on-hover:hover,
+.rotate-on-hover:hover svg {
+  transform: rotate(90deg);
+}
+
+.enlighten-on-hover:hover,
+.enlighten-on-hover:hover svg,
+.enlighten-on-hover.active svg {
+  filter: brightness(1) !important;
 }
 
 ::-webkit-scrollbar {

@@ -22,10 +22,7 @@ export const SideBarStyles = styled.nav`
       svg {
         color: ${theme.white};
         font-size: 2rem;
-        transition: all 0.4s ease;
-      }
-      &:hover svg {
-        filter: brightness(1.5);
+        filter: brightness(0.8);
       }
     }
   }

@@ -16,6 +16,7 @@ export const MoviesStyles = styled.div`
       font-weight: ${theme.fontExtraBold};
       color: ${theme.white};
       cursor: pointer;
+      filter: brightness(0.8);
 
       &:disabled {
         cursor: unset;
@@ -51,12 +52,6 @@ export const MoviesStyles = styled.div`
         background-color: black;
         background-clip: content-box;
         overflow: hidden;
-
-        &:hover {
-          .movie__meta {
-            opacity: 1;
-          }
-        }
       }
 
       &__score {
@@ -129,6 +124,12 @@ export const MoviesStyles = styled.div`
           font-size: 0.9rem;
           font-weight: ${theme.fontExtraBold};
           margin: 0.5rem 0.5rem 0 0.5rem;
+        }
+      }
+
+      &:hover {
+        .movie__meta {
+          opacity: 1;
         }
       }
     }

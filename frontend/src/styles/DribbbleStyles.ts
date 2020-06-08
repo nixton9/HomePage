@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const DribbbleStyles = styled.div`
   padding-left: ${theme.spacingS};
@@ -16,11 +16,13 @@ export const DribbbleStyles = styled.div`
       margin-right: 0.5rem;
       padding: 0.2rem 0.8rem;
       cursor: pointer;
+      filter: brightness(0.8);
 
       &.selected {
         color: ${theme.black};
         background-color: ${theme.white};
         border-radius: ${theme.bigBorderRadius};
+        filter: brightness(1);
       }
     }
   }
@@ -38,14 +40,24 @@ export const DribbbleStyles = styled.div`
 
       &__img {
         position: relative;
-        width: 20rem;
-        height: 15rem;
+        width: 23rem;
+        height: 17rem;
         border-radius: ${theme.borderRadius};
         background-position: center center;
         background-size: cover;
         overflow: hidden;
         background-color: black;
         background-clip: content-box;
+
+        @media ${device.desktop} {
+          width: 20rem;
+          height: 15rem;
+        }
+
+        @media ${device.laptopL} {
+          width: 19rem;
+          height: 14.5rem;
+        }
       }
 
       &__title {

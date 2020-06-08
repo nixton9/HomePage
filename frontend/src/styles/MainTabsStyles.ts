@@ -15,12 +15,9 @@ export const MainTabsStyles = styled.div`
       filter: brightness(0.65);
       transition: all 0.3s ease;
 
-      &.selected {
-        filter: brightness(1);
-      }
-
+      &.selected,
       &:hover {
-        filter: brightness(0.8);
+        filter: brightness(1);
       }
 
       svg {

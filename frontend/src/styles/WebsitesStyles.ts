@@ -11,7 +11,7 @@ export const WebsitesStyles = styled.div`
     grid-auto-rows: minmax(min-content, max-content);
     height: 25rem;
     overflow-y: scroll;
-    padding-top: 5px;
+    padding-top: 10px;
 
     .website {
       position: relative;

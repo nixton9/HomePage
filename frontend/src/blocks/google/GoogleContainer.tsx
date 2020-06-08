@@ -8,7 +8,13 @@ const GoogleContainer: React.FC = () => {
   }
 
   return (
-    <BlockWrapper isLoading={false} hasError={false} error={''} name="Google">
+    <BlockWrapper
+      isLoading={false}
+      hasError={false}
+      error={''}
+      name="Google"
+      noMinHeight
+    >
       <Google submitSearch={submitSearch} />
     </BlockWrapper>
   )

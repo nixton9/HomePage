@@ -33,13 +33,16 @@ export const Movies: React.FC<MoviesProps> = ({
     <MoviesStyles>
       <div className="buttons">
         <button
-          className="prev"
+          className="prev enlighten-on-hover"
           disabled={page <= 1}
           onClick={() => setPage(page - 1)}
         >
           Prev
         </button>
-        <button className="next" onClick={() => setPage(page + 1)}>
+        <button
+          className="next enlighten-on-hover"
+          onClick={() => setPage(page + 1)}
+        >
           Next
         </button>
       </div>
