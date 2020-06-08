@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix frontend",
-    "start": "nodemon ./server.js",
+    "start": "npm install && node server.js",
+    "server": "nodemon server.js",
     "client": "cd frontend && npm start",
     "dev": "concurrently --kill-others \"npm run start\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd frontend && npm install && npm run build"
