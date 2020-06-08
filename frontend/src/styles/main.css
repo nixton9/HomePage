@@ -70,6 +70,55 @@ a {
   filter: brightness(1) !important;
 }
 
+.swal2-popup {
+  box-shadow: 0 15px 12px rgba(0, 0, 0, 0.22), 0 19px 38px rgba(0, 0, 0, 0.3);
+  border-radius: 20px !important;
+  background: #191818 !important;
+}
+
+.swal2-container.swal2-backdrop-show {
+  background: transparent !important;
+}
+
+.swal2-show {
+  animation: none !important;
+}
+
+.swal2-icon {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+.swal2-title {
+  color: #ffffff !important;
+}
+
+#swal2-content {
+  color: #868686;
+}
+
+.swal2-actions {
+  margin-top: 3rem !important;
+}
+
+.swal2-confirm {
+  background: #868686 !important;
+  border-radius: 50px !important;
+  height: 64px;
+  font-weight: 800 !important;
+  transition: all 0.4s ease;
+}
+.swal2-confirm:hover {
+  filter: brightness(1.2);
+}
+.swal2-confirm:focus {
+  box-shadow: none !important;
+}
+
+.swal2-cancel {
+  background: transparent !important;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }

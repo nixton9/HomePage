@@ -4,6 +4,7 @@ import { Todoist } from './Todoist'
 import { todoistKeyState, todoistCounterState } from '../../state/atoms'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { getDayAndMonth, getCurrentDate } from '../../helpers/date'
+import Swal from 'sweetalert2'
 import axios from 'axios'
 
 export interface ProjectInterface {
@@ -95,19 +96,27 @@ const TodoistContainer: React.FC = () => {
   }
 
   const completeTask = (taskId: number) => {
-    if (
-      window.confirm('Are you sure you want to mark this task as completed?')
-    ) {
-      const url = `/api/todoist/tasks/close/${taskId}/${todoistKey}`
-      axios
-        .post(url, {}, { headers: { Authorization: `Bearer ${todoistKey}` } })
-        .then(res => {
-          fetchTasks()
-        })
-        .catch(err => {
-          setError('There was an error completing this task')
-        })
-    }
+    Swal.fire({
+      title: 'Update task?',
+      text: 'You will be marking this task as completed!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, complete it!'
+    }).then(result => {
+      if (result.value) {
+        const url = `/api/todoist/tasks/close/${taskId}/${todoistKey}`
+        axios
+          .post(url, {}, { headers: { Authorization: `Bearer ${todoistKey}` } })
+          .then(res => {
+            fetchTasks()
+          })
+          .catch(err => {
+            setError('There was an error completing this task')
+          })
+      }
+    })
   }
 
   const createTask = (text: string, date: string, project: number) => {

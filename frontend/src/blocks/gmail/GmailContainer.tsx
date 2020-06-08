@@ -4,6 +4,7 @@ import { Gmail } from './Gmail'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import { useSetRecoilState } from 'recoil'
 import { mailCounterState } from '../../state/atoms'
+import Swal from 'sweetalert2'
 
 const GmailContainer: React.FC = () => {
   const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID
@@ -29,7 +30,12 @@ const GmailContainer: React.FC = () => {
         err => {
           setSignedIn(false)
           setLoading(false)
-          alert('Error login in to Gmail')
+          Swal.fire({
+            title: 'Error!',
+            text: 'There was an error loggin in Gmail',
+            icon: 'error',
+            confirmButtonText: 'Go back'
+          })
         }
       )
   }

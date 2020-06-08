@@ -21,7 +21,8 @@
     "moment": "^2.26.0",
     "puppeteer": "^3.1.0",
     "react-icons": "^3.10.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "sweetalert2": "^9.14.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
