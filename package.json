@@ -4,12 +4,12 @@
   "description": "Portal for a browser with my most used stuff",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix frontend",
+    "client-install": "npm install --prefix client",
     "start": "npm install && node server.js",
     "server": "nodemon server.js",
-    "client": "cd frontend && npm start",
+    "client": "cd client && npm start",
     "dev": "concurrently --kill-others \"npm run start\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd frontend && npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   },
   "author": "Eduardo Araujo",
   "license": "ISC",

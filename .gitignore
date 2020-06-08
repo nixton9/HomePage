@@ -1,5 +1,5 @@
 ./node_modules
-frontend/node_modules
-frontend/.env
+client/node_modules
+client/.env
 node_modules
 .env
