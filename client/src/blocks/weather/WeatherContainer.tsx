@@ -20,7 +20,7 @@ const WeatherContainer: React.FC = () => {
 
   const fetchData = useCallback(
     (position: any) => {
-      const url = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=${WEATHER_KEY}`
+      const url = `https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=${WEATHER_KEY}`
       axios
         .get(url)
         .then(res => {
