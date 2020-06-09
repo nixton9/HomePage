@@ -4,6 +4,11 @@ import { theme } from './theme'
 export const WebsitesStyles = styled.div`
   margin-top: ${theme.spacingS};
 
+  .block-overflow {
+    overflow-y: scroll;
+    height: 24.5rem;
+  }
+
   .websites {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -49,8 +54,8 @@ export const WebsitesStyles = styled.div`
         background: #dcdcdc;
         border-radius: 50px;
         border: none;
-        width: 1rem;
-        height: 1rem;
+        width: 1.1rem;
+        height: 1.1rem;
         cursor: pointer;
         opacity: 0;
         pointer-events: none;

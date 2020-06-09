@@ -33,28 +33,37 @@ export const Websites: React.FC<WebsitesProps> = ({
   return (
     <>
       <WebsitesStyles>
-        {websites.length > 0 ? (
-          <div className="websites">
-            {(websites as any).map(website => (
-              <div key={website.id} className="website translate-top-on-hover">
-                <a href={website.url} target="_blank" rel="noopener noreferrer">
-                  <div className="website__img">
-                    <img src={website.icon} alt={website.name} />
-                  </div>
-                  <p className="website__name">{website.name}</p>
-                </a>
-                <button
-                  className="website__delete"
-                  onClick={() => deleteWebsite(website.id)}
+        <div className="block-overflow">
+          {websites.length > 0 ? (
+            <div className="websites">
+              {(websites as any).map(website => (
+                <div
+                  key={website.id}
+                  className="website translate-top-on-hover"
                 >
-                  <FaTimes />
-                </button>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="websites__nodata">There are no websites in here</div>
-        )}
+                  <a
+                    href={website.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="website__img">
+                      <img src={website.icon} alt={website.name} />
+                    </div>
+                    <p className="website__name">{website.name}</p>
+                  </a>
+                  <button
+                    className="website__delete"
+                    onClick={() => deleteWebsite(website.id)}
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="nodata">There are no websites in here</div>
+          )}
+        </div>
         <Actions openModal={() => setIsModalOpen(true)} />
       </WebsitesStyles>
       <Modal

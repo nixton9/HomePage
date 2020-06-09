@@ -55,9 +55,7 @@ export const Github: React.FC<GithubProps> = ({
             </a>
           ))
         ) : (
-          <div className="tasks__nodata">
-            There are no notifications in here
-          </div>
+          <div className="nodata">There are no notifications in here</div>
         )}
       </div>
       <Actions link={`https://github.com/notifications`} reload={reload} />

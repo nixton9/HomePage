@@ -46,7 +46,11 @@ export const Todoist: React.FC<TodoistProps> = ({
     tasks.length > 0
       ? tasks
           .filter(task => Number(task.projectId) === Number(selectedProject))
-          .sort((a, b) => a.order - b.order)
+          .sort((a, b) => {
+            if (b.dueDate) {
+              return b.dueDate < a.dueDate ? 1 : b.dueDate > a.dueDate ? -1 : 0
+            } else return -1
+          })
       : []
 
   return (
@@ -82,7 +86,7 @@ export const Todoist: React.FC<TodoistProps> = ({
                   </div>
                 ))
               ) : (
-                <div className="tasks__nodata">There are no tasks in here</div>
+                <div className="nodata">There are no tasks in here</div>
               )}
             </div>
           )}

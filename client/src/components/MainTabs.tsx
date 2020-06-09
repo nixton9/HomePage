@@ -14,7 +14,7 @@ import {
 } from '../state/atoms'
 
 export const MainTabs: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState('gmail')
+  const [selectedTab, setSelectedTab] = useState('todoist')
   const [unreadMailCount] = useRecoilState(mailCounterState)
   const [unreadGithubCount] = useRecoilState(githubCounterState)
   const [todoistTaskCount] = useRecoilState(todoistCounterState)

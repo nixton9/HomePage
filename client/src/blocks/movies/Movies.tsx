@@ -86,7 +86,7 @@ export const Movies: React.FC<MoviesProps> = ({
             </div>
           ))
         ) : (
-          <div className="movies__nodata">There are no movies to show</div>
+          <div className="nodata">There are no movies to show</div>
         )}
       </div>
     </MoviesStyles>

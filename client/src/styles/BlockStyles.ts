@@ -66,4 +66,15 @@ export const BlockStyles = styled.div`
     font-weight: ${theme.fontRegular};
     color: ${theme.white};
   }
+
+  .nodata {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-weight: 200;
+    font-size: 1rem;
+  }
 `
