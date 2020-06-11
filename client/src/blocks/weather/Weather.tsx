@@ -1,7 +1,9 @@
 import React from 'react'
+import Tooltip from 'react-tooltip-lite'
 import { WeatherIcon } from './WeatherIcon'
 import { WeatherStyles } from '../../styles/WeatherStyles'
 import { capitalize } from '../../helpers/random'
+import { FaSyncAlt } from 'react-icons/fa'
 
 interface WeatherProps {
   city: string
@@ -11,6 +13,7 @@ interface WeatherProps {
   minTemperature: number
   maxTemperature: number
   icon: string
+  reload: () => void
 }
 
 export const Weather: React.FC<WeatherProps> = props => {
@@ -20,7 +23,8 @@ export const Weather: React.FC<WeatherProps> = props => {
     minTemperature,
     maxTemperature,
     icon,
-    temperature
+    temperature,
+    reload
   } = props
 
   return (
@@ -33,16 +37,21 @@ export const Weather: React.FC<WeatherProps> = props => {
         <h3 className="info__desc">{capitalize(description)}</h3>
         <div className="info__temp">
           <p>
-            <strong>Temp</strong> {Math.round(maxTemperature)}C
+            <strong>Temp</strong> {Math.round(temperature)}C
           </p>
           <p>
-            <strong>Max</strong> {Math.round(minTemperature)}C
+            <strong>Max</strong> {Math.round(maxTemperature)}C
           </p>
           <p>
-            <strong>Min</strong> {Math.round(temperature)}C
+            <strong>Min</strong> {Math.round(minTemperature)}C
           </p>
         </div>
       </div>
+      <span className="reload rotate-on-hover" onClick={reload}>
+        <Tooltip content="Reload" direction={'up'} arrow={false}>
+          <FaSyncAlt />
+        </Tooltip>
+      </span>
     </WeatherStyles>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Weather } from './Weather'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
+import { getCurrentDate } from '../../helpers/date'
 import axios from 'axios'
 
 const WeatherContainer: React.FC = () => {
@@ -20,11 +21,12 @@ const WeatherContainer: React.FC = () => {
 
   const fetchData = useCallback(
     (position: any) => {
+      setLoading(true)
       const url = `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=${WEATHER_KEY}`
       axios
         .get(url)
         .then(res => {
-          setData({
+          const dataObj = {
             city: res.data.name,
             type: res.data.weather[0].main,
             description: res.data.weather[0].description,
@@ -32,7 +34,10 @@ const WeatherContainer: React.FC = () => {
             minTemperature: res.data.main.temp_min,
             maxTemperature: res.data.main.temp_max,
             icon: res.data.weather[0].icon
-          })
+          }
+          setData(dataObj)
+          localStorage.setItem('weather', JSON.stringify(dataObj))
+          localStorage.setItem('weather_stamp', getCurrentDate())
           setLoading(false)
           setError('')
         })
@@ -43,11 +48,24 @@ const WeatherContainer: React.FC = () => {
     [WEATHER_KEY]
   )
 
-  useEffect(() => {
+  const getCurrentWeather = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(fetchData)
     } else {
       setError('There was an error getting your current location')
+    }
+  }
+
+  useEffect(() => {
+    if (
+      localStorage.getItem('weather') &&
+      localStorage.getItem('weather_stamp') === getCurrentDate()
+    ) {
+      // @ts-ignore
+      setData(JSON.parse(localStorage.getItem('weather')))
+      setLoading(false)
+    } else {
+      getCurrentWeather()
     }
   }, [fetchData])
 
@@ -66,6 +84,7 @@ const WeatherContainer: React.FC = () => {
         minTemperature={data.minTemperature}
         maxTemperature={data.maxTemperature}
         icon={data.icon}
+        reload={getCurrentWeather}
       />
     </BlockWrapper>
   )

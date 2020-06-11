@@ -4,6 +4,7 @@ import { theme } from './theme'
 export const WeatherStyles = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 
   .icon {
     margin-right: 0.75rem;
@@ -37,6 +38,26 @@ export const WeatherStyles = styled.div`
           font-weight: ${theme.fontRegular};
         }
       }
+    }
+  }
+
+  .reload {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    cursor: pointer;
+
+    svg {
+      font-size: 0.9rem;
+      transform-origin: center center;
+    }
+  }
+
+  &:hover {
+    .reload {
+      opacity: 1;
     }
   }
 `
