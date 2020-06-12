@@ -36,8 +36,8 @@ const NewsContainer: React.FC = () => {
   const fetchNews = () => {
     setNewsLoading(true)
     const url = selectedCategory
-      ? `http://newsapi.org/v2/top-headlines?country=pt&category=${selectedCategory}&apiKey=${API_KEY}`
-      : `http://newsapi.org/v2/top-headlines?country=pt&apiKey=${API_KEY}`
+      ? `https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/top-headlines?country=pt&category=${selectedCategory}&apiKey=${API_KEY}`
+      : `https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/top-headlines?country=pt&apiKey=${API_KEY}`
     console.log(url)
     axios
       .get(url)
