@@ -76,5 +76,6 @@ export const BlockStyles = styled.div`
     text-align: center;
     font-weight: 200;
     font-size: 1rem;
+    color: ${theme.white};
   }
 `

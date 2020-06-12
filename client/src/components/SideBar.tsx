@@ -1,7 +1,14 @@
 import React from 'react'
 import Tooltip from 'react-tooltip-lite'
 import { SideBarStyles } from '../styles/SideBarStyles'
-import { FiTv, FiHome, FiSettings, FiMonitor, FiImage } from 'react-icons/fi'
+import {
+  FiTv,
+  FiHome,
+  FiSettings,
+  FiMonitor,
+  FiImage,
+  FiTrello
+} from 'react-icons/fi'
 import { NavLink } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { settingsModalState } from '../state/atoms'
@@ -34,6 +41,17 @@ export const SideBar: React.FC = () => {
           >
             <Tooltip content="Dribbble" direction={'up'} arrow={false}>
               <FiImage />
+            </Tooltip>
+          </NavLink>
+        </div>
+        <div className="nav__items__single-item">
+          <NavLink
+            to="/news"
+            className="enlighten-on-hover"
+            activeClassName="active"
+          >
+            <Tooltip content="News" direction={'up'} arrow={false}>
+              <FiTrello />
             </Tooltip>
           </NavLink>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Shot, Category } from './DribbbleContainer'
+import { Shot } from './DribbbleContainer'
+import { Categories, Category } from '../../components/Categories'
 import { DribbbleStyles } from '../../styles/DribbbleStyles'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
 
@@ -21,21 +22,11 @@ export const Dribbble: React.FC<DribbbleProps> = ({
   return (
     <DribbbleStyles>
       {categories.length > 0 && (
-        <div className="categories">
-          {(categories as Category[]).map(cat => (
-            <div
-              key={cat.value ? cat.value : 'all'}
-              className={
-                cat.value === selectedCategory
-                  ? 'category enlight-on-hover selected'
-                  : 'category enlighten-on-hover'
-              }
-              onClick={() => setSelectedCategory(cat.value)}
-            >
-              {cat.name}
-            </div>
-          ))}
-        </div>
+        <Categories
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
       )}
 
       {shotsLoading ? (

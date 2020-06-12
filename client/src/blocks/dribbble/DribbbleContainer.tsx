@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import { Dribbble } from './Dribbble'
+import { Category } from '../../components/Categories'
 import axios from 'axios'
 
 export interface Shot {
@@ -10,11 +11,6 @@ export interface Shot {
   title: string
   url: string
   image: string
-}
-
-export interface Category {
-  value?: string
-  name: string
 }
 
 const DribbbleContainer: React.FC = () => {

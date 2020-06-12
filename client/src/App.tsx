@@ -3,6 +3,7 @@ import Wrapper from './components/Wrapper'
 import Main from './components/Main'
 import Login from './components/Login'
 import DribbbleContainer from './blocks/dribbble/DribbbleContainer'
+import NewsContainer from './blocks/news/NewsContainer'
 import HackerNewsContainer from './blocks/hackernews/HackerNewsContainer'
 import MoviesContainer from './blocks/movies/MoviesContainer'
 import { RecoilRoot } from 'recoil'
@@ -25,6 +26,9 @@ const App: React.FC = () => {
           <Wrapper>
             <Route exact path="/dribbble">
               <DribbbleContainer />
+            </Route>
+            <Route exact path="/news">
+              <NewsContainer />
             </Route>
             <Route exact path="/hackernews">
               <HackerNewsContainer />
