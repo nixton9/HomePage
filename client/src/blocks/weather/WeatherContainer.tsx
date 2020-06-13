@@ -48,13 +48,13 @@ const WeatherContainer: React.FC = () => {
     [WEATHER_KEY]
   )
 
-  const getCurrentWeather = () => {
+  const getCurrentWeather = useCallback(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(fetchData)
     } else {
       setError('There was an error getting your current location')
     }
-  }
+  }, [fetchData])
 
   useEffect(() => {
     if (
@@ -67,7 +67,7 @@ const WeatherContainer: React.FC = () => {
     } else {
       getCurrentWeather()
     }
-  }, [fetchData])
+  }, [getCurrentWeather])
 
   return (
     <BlockWrapper

@@ -10,6 +10,7 @@ const port = process.env.PORT || '8000'
 
 const dribbbleRoutes = require('./routes/api/dribbble')
 const todoistRoutes = require('./routes/api/todoist')
+const newsRoutes = require('./routes/api/news')
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -24,8 +25,8 @@ app.use(function (req, res, next) {
 })
 
 app.use('/api/dribbble', dribbbleRoutes)
-
 app.use('/api/todoist', todoistRoutes)
+app.use('/api/news', newsRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client', 'build')))

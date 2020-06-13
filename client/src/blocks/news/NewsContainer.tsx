@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { News } from './News'
 import { BlockWrapper } from '../../helpers/BlockWrapper'
 import { Category } from '../../components/Categories'
@@ -18,27 +18,19 @@ const NewsContainer: React.FC = () => {
   const [newsLoading, setNewsLoading] = useState(true)
   const [error, setError] = useState(false)
   const [news, setNews] = useState<News[] | []>([])
+  const [categories, setCategories] = useState<Category[] | []>([])
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
     ''
   )
-  const [categories] = useState<Category[] | []>([
-    { value: '', name: 'All' },
-    { value: 'business', name: 'Business' },
-    { value: 'entertainment', name: 'Entertainment' },
-    { value: 'health', name: 'Health' },
-    { value: 'science', name: 'Science' },
-    { value: 'sports', name: 'Sports' },
-    { value: 'technology', name: 'Technology' }
-  ])
 
   const API_KEY = process.env.REACT_APP_NEWS_API_KEY
 
   const fetchNews = () => {
     setNewsLoading(true)
     const url = selectedCategory
-      ? `https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/top-headlines?country=pt&category=${selectedCategory}&apiKey=${API_KEY}`
-      : `https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/top-headlines?country=pt&apiKey=${API_KEY}`
-    console.log(url)
+      ? `/api/news/${selectedCategory}/${API_KEY}`
+      : `/api/news/${API_KEY}`
+
     axios
       .get(url)
       .then(res => {
@@ -62,6 +54,27 @@ const NewsContainer: React.FC = () => {
         setNewsLoading(false)
       })
   }
+
+  const fetchCategories = () => {
+    setLoading(true)
+    const url = `/api/news/categories`
+    axios
+      .get(url, {
+        method: 'GET'
+      })
+      .then(res => {
+        setCategories(res.data)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError('There was an error fetching News categories')
+        setLoading(false)
+      })
+  }
+
+  useEffect(() => {
+    fetchCategories()
+  }, [])
 
   useEffect(fetchNews, [selectedCategory])
 
