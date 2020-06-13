@@ -34,6 +34,7 @@ const DribbbleContainer: React.FC = () => {
         method: 'GET'
       })
       .then(res => {
+        console.log(res.data)
         setShots(res.data)
         setShotsLoading(false)
         setError('')

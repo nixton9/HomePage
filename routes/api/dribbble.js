@@ -18,13 +18,16 @@ router.get('/', (req, res) => {
       const dribbbleShots = []
 
       shots.each(function () {
-        const authorName = $(this).find('.attribution .display-name').text()
-        const authorImage = $(this).find('.attribution img.photo').attr('src')
-        const authorUrl = $(this).find('.attribution a.url').attr('href')
-        const title = $(this).find('.shot-display-options .shot-title').text()
+        const authorName = $(this)
+          .find('.user-information .display-name')
+          .text()
+        const authorImage = $(this)
+          .find('.user-information img.photo')
+          .attr('src')
+        const authorUrl = $(this).find('.user-information a.url').attr('href')
+        const title = $(this).find('.shot-title').text()
         const url = $(this).find('.dribbble-link').attr('href')
-        const image = $(this).find('.dribbble-link img').attr('src')
-
+        const image = $(this).find('picture source').attr('srcset')
         dribbbleShots.push({
           authorName,
           authorImage,
@@ -82,12 +85,16 @@ router.get('/:category', (req, res) => {
       const dribbbleShots = []
 
       shots.each(function () {
-        const authorName = $(this).find('.attribution .display-name').text()
-        const authorImage = $(this).find('.attribution img.photo').attr('src')
-        const authorUrl = $(this).find('.attribution a.url').attr('href')
-        const title = $(this).find('.shot-display-options .shot-title').text()
+        const authorName = $(this)
+          .find('.user-information .display-name')
+          .text()
+        const authorImage = $(this)
+          .find('.user-information img.photo')
+          .attr('src')
+        const authorUrl = $(this).find('.user-information a.url').attr('href')
+        const title = $(this).find('.shot-title').text()
         const url = $(this).find('.dribbble-link').attr('href')
-        const image = $(this).find('.dribbble-link img').attr('src')
+        const image = $(this).find('picture source').attr('srcset')
 
         dribbbleShots.push({
           authorName,
