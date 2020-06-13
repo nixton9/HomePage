@@ -7,7 +7,8 @@ import {
   FiSettings,
   FiMonitor,
   FiImage,
-  FiTrello
+  FiTrello,
+  FiFilm
 } from 'react-icons/fi'
 import { NavLink } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
@@ -73,6 +74,17 @@ export const SideBar: React.FC = () => {
             activeClassName="active"
           >
             <Tooltip content="Movies" direction={'up'} arrow={false}>
+              <FiFilm />
+            </Tooltip>
+          </NavLink>
+        </div>
+        <div className="nav__items__single-item">
+          <NavLink
+            to="/tvshows"
+            className="enlighten-on-hover"
+            activeClassName="active"
+          >
+            <Tooltip content="Tv Shows" direction={'up'} arrow={false}>
               <FiTv />
             </Tooltip>
           </NavLink>

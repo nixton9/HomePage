@@ -36,6 +36,9 @@ const App: React.FC = () => {
             <Route exact path="/movies">
               <MoviesContainer />
             </Route>
+            <Route exact path="/tvshows">
+              <MoviesContainer tvShows />
+            </Route>
             <Route exact path="/">
               <Main />
             </Route>

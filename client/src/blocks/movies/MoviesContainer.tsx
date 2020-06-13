@@ -3,6 +3,10 @@ import { BlockWrapper } from '../../helpers/BlockWrapper'
 import { Movies } from './Movies'
 import axios from 'axios'
 
+interface MoviesContainerProps {
+  tvShows?: boolean
+}
+
 export interface MovieInterface {
   id: number
   title: string
@@ -18,7 +22,7 @@ export interface GenreInterface {
   name: string
 }
 
-const MoviesContainer: React.FC = () => {
+const MoviesContainer: React.FC<MoviesContainerProps> = ({ tvShows }) => {
   const MOVIES_KEY = process.env.REACT_APP_MOVIES_API_KEY
 
   const [loading, setLoading] = useState(true)
@@ -28,17 +32,19 @@ const MoviesContainer: React.FC = () => {
   const [genres, setGenres] = useState<[] | GenreInterface[]>([])
   const [page, setPage] = useState(1)
 
-  const fetchMovies = () => {
+  const fetchData = () => {
     setMoviesLoading(true)
-    const url = `https://api.themoviedb.org/3/movie/popular?page=${page}`
+    const type = tvShows ? 'tv' : 'movie'
+    const url = `https://api.themoviedb.org/3/${type}/popular?page=${page}`
     axios
       .get(url, { headers: { Authorization: `Bearer ${MOVIES_KEY}` } })
       .then(res => {
+        console.log(res)
         const allMovies: MovieInterface[] = []
         res.data.results.forEach((mov: any) => {
           let movie = {
             id: mov.id,
-            title: mov.title,
+            title: tvShows ? mov.original_name : mov.title,
             description: mov.overview,
             releaseDate: mov.release_date,
             image: mov.poster_path,
@@ -59,7 +65,8 @@ const MoviesContainer: React.FC = () => {
 
   const fetchGenres = () => {
     setLoading(true)
-    const url = `https://api.themoviedb.org/3/genre/movie/list`
+    const type = tvShows ? 'tv' : 'movie'
+    const url = `https://api.themoviedb.org/3/genre/${type}/list`
     axios
       .get(url, { headers: { Authorization: `Bearer ${MOVIES_KEY}` } })
       .then(res => {
@@ -82,7 +89,8 @@ const MoviesContainer: React.FC = () => {
   }
 
   const openTrailer = id => {
-    const url = `http://api.themoviedb.org/3/movie/${id}/videos`
+    const type = tvShows ? 'tv' : 'movie'
+    const url = `http://api.themoviedb.org/3/${type}/${id}/videos`
     axios
       .get(url, { headers: { Authorization: `Bearer ${MOVIES_KEY}` } })
       .then(res => {
@@ -94,7 +102,7 @@ const MoviesContainer: React.FC = () => {
 
   useEffect(fetchGenres, [])
 
-  useEffect(fetchMovies, [page])
+  useEffect(fetchData, [page])
 
   return (
     <BlockWrapper
