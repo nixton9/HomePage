@@ -5,6 +5,11 @@ export const ModalStyles = styled.div`
   display: none;
   &.open {
     display: block;
+
+    .modal {
+      animation: showModal 0.3s;
+      animation-fill-mode: forwards;
+    }
   }
 
   .modal {
@@ -16,11 +21,11 @@ export const ModalStyles = styled.div`
     right: 0;
     margin: 0 auto;
     padding: 3rem;
-    transform: translateY(-50%);
     background-color: ${theme.black};
     border-radius: ${theme.borderRadius};
     box-shadow: ${theme.mainShadow};
     z-index: 11;
+    transform-origin: center center;
 
     .modal__title {
       font-size: 1.6rem;
@@ -91,5 +96,20 @@ export const ModalStyles = styled.div`
     right: 0;
     bottom: 0;
     z-index: 1;
+  }
+
+  @keyframes showModal {
+    0% {
+      transform: scale(0.7) translateY(-50%);
+    }
+    45% {
+      transform: scale(1.05) translateY(-50%);
+    }
+    80% {
+      transform: scale(0.95) translateY(-50%);
+    }
+    100% {
+      transform: scale(1) translateY(-50%);
+    }
   }
 `

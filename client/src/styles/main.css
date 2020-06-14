@@ -81,10 +81,6 @@ a {
   background: transparent !important;
 }
 
-.swal2-show {
-  animation: none !important;
-}
-
 .swal2-icon {
   color: #fff !important;
   border-color: #fff !important;
