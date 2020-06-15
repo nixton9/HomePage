@@ -5,7 +5,6 @@ export const WebsitesStyles = styled.div`
   margin-top: ${theme.spacingS};
 
   .block-overflow {
-    overflow-y: scroll;
     height: 24.5rem;
   }
 
