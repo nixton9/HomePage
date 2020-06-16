@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ProjectInterface, TaskInterface } from './TodoistContainer'
-import { ProjectsSelect } from './ProjectsSelect'
+import { Select } from '../../components/Select'
 import { Modal } from '../../components/Modal'
 import { Actions } from '../../components/Actions'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
@@ -57,11 +57,16 @@ export const Todoist: React.FC<TodoistProps> = ({
     <>
       <TodoistStyles>
         <div className="todoist block-overflow">
-          <ProjectsSelect
-            projects={projects}
-            selectedProject={selectedProject}
-            setSelectedProject={setSelectedProject}
-          />
+          <div className="projects">
+            <Select
+              items={(projects as ProjectInterface[]).map(proj => ({
+                val: proj.id,
+                name: proj.title
+              }))}
+              selectedItem={selectedProject}
+              setSelectedItem={setSelectedProject}
+            />
+          </div>
           {tasksLoading ? (
             <div className="inner-loading">
               <LoadingSpinner />

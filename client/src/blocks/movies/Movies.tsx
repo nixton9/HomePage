@@ -1,6 +1,7 @@
 import React from 'react'
 import { MovieInterface, GenreInterface } from './MoviesContainer'
 import { MoviesStyles } from '../../styles/MoviesStyles'
+import { Select } from '../../components/Select'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
 import { dateToString } from '../../helpers/date'
 
@@ -9,6 +10,8 @@ interface MoviesProps {
   genres: GenreInterface[] | []
   page: number
   setPage: React.Dispatch<React.SetStateAction<number>>
+  selectedGenre: number
+  setSelectedGenre: React.Dispatch<React.SetStateAction<number>>
   moviesLoading: boolean
   openTrailer: (id: string) => void
 }
@@ -19,32 +22,49 @@ export const Movies: React.FC<MoviesProps> = ({
   page,
   setPage,
   moviesLoading,
-  openTrailer
+  openTrailer,
+  selectedGenre,
+  setSelectedGenre
 }) => {
   const allMovies = (movies as Array<MovieInterface | []>).map(movie => ({
     ...movie,
-    genres: genres
+    displayedGenres: genres
       // @ts-ignore
       .filter(genre => movie.genres.includes(genre.id))
       .map(genre => genre.name)
   }))
 
+  const selectOptions = (genres as GenreInterface[]).map(genre => ({
+    val: genre.id,
+    name: genre.name
+  }))
+  selectOptions.unshift({ val: 0, name: 'All' })
+
   return (
     <MoviesStyles>
       <div className="buttons">
-        <button
-          className="prev enlighten-on-hover"
-          disabled={page <= 1}
-          onClick={() => setPage(page - 1)}
-        >
-          Prev
-        </button>
-        <button
-          className="next enlighten-on-hover"
-          onClick={() => setPage(page + 1)}
-        >
-          Next
-        </button>
+        <div className="buttons__select">
+          <Select
+            items={selectOptions}
+            selectedItem={selectedGenre}
+            setSelectedItem={setSelectedGenre}
+          />
+        </div>
+        <div className="buttons__nav">
+          <button
+            className="prev enlighten-on-hover"
+            disabled={page <= 1}
+            onClick={() => setPage(page - 1)}
+          >
+            Prev
+          </button>
+          <button
+            className="next enlighten-on-hover"
+            onClick={() => setPage(page + 1)}
+          >
+            Next
+          </button>
+        </div>
       </div>
       <div className="movies">
         {moviesLoading ? (
@@ -79,7 +99,7 @@ export const Movies: React.FC<MoviesProps> = ({
               </div>
               <h3 className="movie__title">{movie.title}</h3>
               <div className="movie__genres">
-                {movie.genres.map(genre => (
+                {movie.displayedGenres.map(genre => (
                   <span key={genre}>{genre}</span>
                 ))}
               </div>

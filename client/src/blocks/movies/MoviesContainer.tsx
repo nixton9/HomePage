@@ -30,16 +30,18 @@ const MoviesContainer: React.FC<MoviesContainerProps> = ({ tvShows }) => {
   const [error, setError] = useState('')
   const [movies, setMovies] = useState<[] | MovieInterface[]>([])
   const [genres, setGenres] = useState<[] | GenreInterface[]>([])
+  const [selectedGenre, setSelectedGenre] = useState(0)
   const [page, setPage] = useState(1)
 
   const fetchData = () => {
     setMoviesLoading(true)
     const type = tvShows ? 'tv' : 'movie'
-    const url = `https://api.themoviedb.org/3/${type}/popular?page=${page}`
+    const url = Number(selectedGenre)
+      ? `https://api.themoviedb.org/3/${type}/popular?page=${page}&with_genres=${selectedGenre}`
+      : `https://api.themoviedb.org/3/${type}/popular?page=${page}`
     axios
       .get(url, { headers: { Authorization: `Bearer ${MOVIES_KEY}` } })
       .then(res => {
-        console.log(res)
         const allMovies: MovieInterface[] = []
         res.data.results.forEach((mov: any) => {
           let movie = {
@@ -102,7 +104,7 @@ const MoviesContainer: React.FC<MoviesContainerProps> = ({ tvShows }) => {
 
   useEffect(fetchGenres, [])
 
-  useEffect(fetchData, [page])
+  useEffect(fetchData, [page, selectedGenre])
 
   return (
     <BlockWrapper
@@ -117,6 +119,8 @@ const MoviesContainer: React.FC<MoviesContainerProps> = ({ tvShows }) => {
         genres={genres}
         page={page}
         setPage={setPage}
+        selectedGenre={selectedGenre}
+        setSelectedGenre={setSelectedGenre}
         moviesLoading={moviesLoading}
         openTrailer={openTrailer}
       />

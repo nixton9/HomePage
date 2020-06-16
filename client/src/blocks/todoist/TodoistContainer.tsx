@@ -125,7 +125,7 @@ const TodoistContainer: React.FC = () => {
       .post(url, {
         content: text,
         due_date: date,
-        project_id: project
+        project_id: Number(project)
       })
       .then(res => fetchTasks())
       .catch(err => setError('There was an error adding this task'))

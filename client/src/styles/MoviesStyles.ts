@@ -8,6 +8,11 @@ export const MoviesStyles = styled.div`
     margin-top: ${theme.spacingS};
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    select {
+      font-size: 1.2rem;
+    }
 
     button {
       border: none;
