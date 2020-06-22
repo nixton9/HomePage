@@ -25,6 +25,8 @@ export const theme = {
 }
 
 const size = {
+  mobile: '400px',
+  tablet: '1000px',
   laptop: '1500px',
   laptopL: '1792px',
   desktop: '1920px',
@@ -33,6 +35,8 @@ const size = {
 }
 
 export const device = {
+  mobile: `(max-width: ${size.mobile})`,
+  tablet: `(max-width: ${size.tablet})`,
   laptop: `(max-width: ${size.laptop})`,
   laptopL: `(max-width: ${size.laptopL})`,
   desktop: `(max-width: ${size.desktop})`,

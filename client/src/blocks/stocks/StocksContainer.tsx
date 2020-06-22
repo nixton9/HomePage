@@ -120,6 +120,7 @@ const StocksContainer: React.FC = () => {
   useEffect(() => {
     Object.entries(indexes).forEach(([key]) => fetchData(key, true))
     companies.forEach(comp => fetchData(comp.ticker))
+    // eslint-disable-next-line
   }, [companies.length])
 
   useEffect(() => {

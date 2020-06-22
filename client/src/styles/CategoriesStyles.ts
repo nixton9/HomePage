@@ -1,11 +1,16 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const CategoriesStyles = styled.div`
   margin-top: ${theme.spacingS};
   color: ${theme.white};
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+
+  @media ${device.mobile} {
+    margin-top: ${theme.spacingXS};
+  }
 
   .category {
     font-weight: ${theme.fontExtraBold};
@@ -20,6 +25,13 @@ export const CategoriesStyles = styled.div`
       background-color: ${theme.white};
       border-radius: ${theme.bigBorderRadius};
       filter: brightness(1);
+    }
+
+    @media ${device.mobile} {
+      font-size: 0.9rem;
+      margin-right: 0.2rem;
+      padding: 0.1rem 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
 `

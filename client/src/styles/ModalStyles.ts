@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const ModalStyles = styled.div`
   display: none;
@@ -27,15 +27,27 @@ export const ModalStyles = styled.div`
     z-index: 11;
     transform-origin: center center;
 
+    @media ${device.mobile} {
+      padding: 2rem;
+    }
+
     .modal__title {
       font-size: 1.6rem;
       font-weight: ${theme.fontBold};
       color: ${theme.white};
+
+      @media ${device.mobile} {
+        font-size: 1.3rem;
+      }
     }
 
     .modal__content {
       margin-top: ${theme.spacingXS};
       text-align: center;
+
+      @media ${device.mobile} {
+        margin-top: 0.5rem;
+      }
 
       input {
         width: 100%;
@@ -48,6 +60,14 @@ export const ModalStyles = styled.div`
         margin: ${theme.spacingXS} auto;
         padding: 0 2rem;
         width: 90%;
+
+        @media ${device.mobile} {
+          width: 100%;
+          height: 3.7rem;
+          font-size: 0.9rem;
+          padding: 0 ${theme.spacingXS};
+          margin: 1.2rem auto;
+        }
       }
 
       input[type='range'] {
@@ -81,6 +101,12 @@ export const ModalStyles = styled.div`
         font-size: 1rem;
         cursor: pointer;
         transition: all 0.4s ease;
+
+        @media ${device.mobile} {
+          height: 3.7rem;
+          font-size: 0.9rem;
+          margin-top: 1.2rem;
+        }
 
         &:hover {
           filter: brightness(1.2);

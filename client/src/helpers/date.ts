@@ -21,19 +21,17 @@ export const getTimeFromNow = date =>
     .startOf('hour')
     .fromNow()
 
-export const getDateForStocks = date => {
-  const day = moment(date)
+export const getDateForStocks = () => {
+  const day = moment()
     .format('dddd')
     .toLowerCase()
   let daysToBeSubtracted = 8
-  console.log(day)
   if (day === 'monday' || day === 'tuesday') {
     daysToBeSubtracted = 10
   } else if (day === 'sunday') {
     daysToBeSubtracted = 9
   }
-  console.log(daysToBeSubtracted)
-  return moment(date)
+  return moment()
     .subtract(daysToBeSubtracted, 'days')
     .format('YYYY-MM-DD')
 }

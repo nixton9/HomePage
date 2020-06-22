@@ -19,7 +19,12 @@ export const BlockStyles = styled.div`
     max-height: 100vh;
 
     @media ${device.laptopL} {
-      padding-left: ${theme.spacingM};
+      padding-left: ${theme.spacingXS};
+      padding-right: ${theme.spacingXS};
+    }
+
+    @media ${device.tablet} {
+      padding-left: ${theme.spacingXS};
     }
   }
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const IndexChartStyles = styled.div`
   .index-title {
@@ -18,6 +18,10 @@ export const IndexChartStyles = styled.div`
     height: 15rem;
     width: 90%;
     margin-top: ${theme.spacingXS};
+
+    @media ${device.mobile} {
+      height: 11rem;
+    }
 
     &.has-error {
       height: 100%;
@@ -66,13 +70,25 @@ export const IndexChartStyles = styled.div`
     .recharts-text {
       font-size: 0.75rem;
       font-weight: ${theme.fontLight};
+
+      @media ${device.mobile} {
+        font-size: 0.65rem;
+      }
     }
 
     .xAxis .recharts-text {
       transform: translateY(10px);
+
+      @media ${device.mobile} {
+        transform: translateY(5px);
+      }
     }
     .yAxis .recharts-text {
       transform: translateX(-10px);
+
+      @media ${device.mobile} {
+        transform: translateX(-5px);
+      }
     }
   }
 `

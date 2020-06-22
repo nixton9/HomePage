@@ -111,7 +111,7 @@ const MoviesContainer: React.FC<MoviesContainerProps> = ({ tvShows }) => {
       isLoading={loading}
       hasError={Boolean(error)}
       error={error}
-      name="Movies"
+      name={tvShows ? 'TV Shows' : 'Movies'}
       page
     >
       <Movies

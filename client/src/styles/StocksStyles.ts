@@ -1,15 +1,24 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const StocksStyles = styled.div`
   padding-left: ${theme.spacingS};
   overflow-y: scroll;
   height: 85vh;
 
+  @media ${device.mobile} {
+    padding-left: 0;
+  }
+
   .indexes {
     margin-top: ${theme.spacingS};
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    @media ${device.tablet} {
+      grid-template-columns: 1fr;
+      grid-gap: ${theme.spacingS};
+    }
   }
 
   .title {
@@ -17,6 +26,10 @@ export const StocksStyles = styled.div`
     font-weight: ${theme.fontBold};
     color: ${theme.white};
     margin-top: ${theme.spacingM};
+
+    @media ${device.tablet} {
+      margin-top: ${theme.spacingS};
+    }
   }
 
   .companies {
@@ -26,6 +39,10 @@ export const StocksStyles = styled.div`
 
     .company {
       margin: ${theme.spacingS} ${theme.spacingS} 0 0;
+
+      @media ${device.mobile} {
+        margin: ${theme.spacingS} auto 0 auto;
+      }
     }
   }
 

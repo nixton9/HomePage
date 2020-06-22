@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { theme } from './theme'
 
 export const CompanyCardStyles = styled.div`
-  min-width: 13rem;
+  min-width: 18rem;
   min-height: 7rem;
   padding: 1rem;
   background-color: ${theme.white};

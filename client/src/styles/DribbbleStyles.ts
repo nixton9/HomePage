@@ -4,6 +4,10 @@ import { theme, device } from './theme'
 export const DribbbleStyles = styled.div`
   padding-left: ${theme.spacingS};
 
+  @media ${device.mobile} {
+    padding-left: 0;
+  }
+
   .shots {
     margin-top: ${theme.spacingS};
     height: 73vh;
@@ -11,6 +15,10 @@ export const DribbbleStyles = styled.div`
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
+
+    @media ${device.mobile} {
+      margin-top: ${theme.spacingXS};
+    }
 
     .shot {
       margin: 0 4rem 4rem 0;

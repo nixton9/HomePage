@@ -70,17 +70,6 @@ export const SideBar: React.FC = () => {
         </div>
         <div className="nav__items__single-item">
           <NavLink
-            to="/stocks"
-            className="enlighten-on-hover"
-            activeClassName="active"
-          >
-            <Tooltip content="Stocks" direction={'up'} arrow={false}>
-              <FiActivity />
-            </Tooltip>
-          </NavLink>
-        </div>
-        <div className="nav__items__single-item">
-          <NavLink
             to="/movies"
             className="enlighten-on-hover"
             activeClassName="active"
@@ -98,6 +87,17 @@ export const SideBar: React.FC = () => {
           >
             <Tooltip content="Tv Shows" direction={'up'} arrow={false}>
               <FiTv />
+            </Tooltip>
+          </NavLink>
+        </div>
+        <div className="nav__items__single-item">
+          <NavLink
+            to="/stocks"
+            className="enlighten-on-hover"
+            activeClassName="active"
+          >
+            <Tooltip content="Stocks" direction={'up'} arrow={false}>
+              <FiActivity />
             </Tooltip>
           </NavLink>
         </div>

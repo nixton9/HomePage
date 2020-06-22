@@ -1,8 +1,12 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const MoviesStyles = styled.div`
   padding-left: ${theme.spacingS};
+
+  @media ${device.mobile} {
+    padding-left: 0;
+  }
 
   .buttons {
     margin-top: ${theme.spacingS};
@@ -10,8 +14,16 @@ export const MoviesStyles = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    @media ${device.mobile} {
+      margin-top: ${theme.spacingXS};
+    }
+
     select {
       font-size: 1.2rem;
+
+      @media ${device.mobile} {
+        font-size: 1rem;
+      }
     }
 
     button {
@@ -22,6 +34,10 @@ export const MoviesStyles = styled.div`
       color: ${theme.white};
       cursor: pointer;
       filter: brightness(0.8);
+
+      @media ${device.mobile} {
+        font-size: 1rem;
+      }
 
       &:disabled {
         cursor: unset;
@@ -47,6 +63,10 @@ export const MoviesStyles = styled.div`
       margin: 0 4rem 4rem 0;
       color: ${theme.white};
       cursor: pointer;
+
+      @media ${device.mobile} {
+        margin: 0 auto ${theme.spacingS} auto;
+      }
 
       &__img {
         position: relative;

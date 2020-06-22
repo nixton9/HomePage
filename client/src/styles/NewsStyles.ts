@@ -1,8 +1,12 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const NewsStyles = styled.div`
   padding-left: ${theme.spacingS};
+
+  @media ${device.mobile} {
+    padding-left: 0;
+  }
 
   .articles {
     margin-top: ${theme.spacingS};
@@ -12,9 +16,18 @@ export const NewsStyles = styled.div`
     align-items: flex-start;
     flex-wrap: wrap;
 
+    @media ${device.mobile} {
+      margin-top: ${theme.spacingXS};
+    }
+
     .article {
       width: 23rem;
       margin: 0 4rem 4rem 0;
+
+      @media ${device.mobile} {
+        width: 20rem;
+        margin: 0 0 3rem 0;
+      }
 
       &__img {
         position: relative;
