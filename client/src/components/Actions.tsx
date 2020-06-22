@@ -17,7 +17,7 @@ export const Actions: React.FC<ActionsProps> = ({
   logout,
   openModal
 }) => (
-  <ActionsStyles>
+  <ActionsStyles className="actions">
     <div className="left">
       {reload && (
         <span className="reload rotate-on-hover" onClick={reload}>

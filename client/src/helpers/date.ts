@@ -20,3 +20,20 @@ export const getTimeFromNow = date =>
     .unix(date)
     .startOf('hour')
     .fromNow()
+
+export const getDateForStocks = date => {
+  const day = moment(date)
+    .format('dddd')
+    .toLowerCase()
+  let daysToBeSubtracted = 8
+  console.log(day)
+  if (day === 'monday' || day === 'tuesday') {
+    daysToBeSubtracted = 10
+  } else if (day === 'sunday') {
+    daysToBeSubtracted = 9
+  }
+  console.log(daysToBeSubtracted)
+  return moment(date)
+    .subtract(daysToBeSubtracted, 'days')
+    .format('YYYY-MM-DD')
+}

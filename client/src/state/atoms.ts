@@ -45,6 +45,11 @@ export const websitesModalState = atom({
   default: false
 })
 
+export const stocksModalState = atom({
+  key: 'stocksModalOpen',
+  default: false
+})
+
 export const mailCounterState = atom({
   key: 'mailCounter',
   default: 0

@@ -18,6 +18,7 @@ export const ActionsStyles = styled.div`
 
     svg {
       font-size: 1rem;
+      color: ${theme.white};
     }
   }
 

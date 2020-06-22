@@ -5,6 +5,7 @@ import Login from './components/Login'
 import DribbbleContainer from './blocks/dribbble/DribbbleContainer'
 import NewsContainer from './blocks/news/NewsContainer'
 import HackerNewsContainer from './blocks/hackernews/HackerNewsContainer'
+import StocksContainer from './blocks/stocks/StocksContainer'
 import MoviesContainer from './blocks/movies/MoviesContainer'
 import { RecoilRoot } from 'recoil'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -32,6 +33,9 @@ const App: React.FC = () => {
             </Route>
             <Route exact path="/hackernews">
               <HackerNewsContainer />
+            </Route>
+            <Route exact path="/stocks">
+              <StocksContainer />
             </Route>
             <Route exact path="/movies">
               <MoviesContainer />

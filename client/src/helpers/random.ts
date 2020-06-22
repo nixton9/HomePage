@@ -40,3 +40,9 @@ export const formatGithubReason = str => {
   }
   return capitalize(str)
 }
+
+export const calculatePercentage = (val1, val2) => {
+  const percentage =
+    Math.round(100 * Math.abs((val1 - val2) / ((val1 + val2) / 2)) * 10) / 10
+  return val1 > val2 ? -percentage : percentage
+}

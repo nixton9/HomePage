@@ -1,10 +1,13 @@
 export const theme = {
   white: '#ffffff',
+  offWhite: '#E3E3E3',
   black: '#191818',
   lightGrey: '#4D4D4D',
   lighterGrey: '#868686',
   darkGrey: '#2B2B2B',
   hnOrange: '#FF8856',
+  red: '#F44336',
+  green: '#4CAF50',
   borderRadius: '20px',
   bigBorderRadius: '50px',
   fontExtraLight: '200',
