@@ -1,11 +1,20 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const GoogleStyles = styled.div`
   padding-top: ${theme.spacingXS};
 
   .input-wrapper {
     position: relative;
+
+    @media ${device.tablet} {
+      padding-left: 2rem;
+    }
+
+    @media ${device.mobile} {
+      padding-left: 0;
+      width: 100%;
+    }
 
     input {
       width: 100%;

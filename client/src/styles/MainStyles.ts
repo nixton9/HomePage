@@ -44,4 +44,33 @@ export const MainStyles = styled.div`
       max-width: 33rem;
     }
   }
+
+  @media ${device.tablet} {
+    padding-left: ${theme.spacingXS};
+    padding-right: ${theme.spacingXS};
+
+    .main__grid.tabs-websites {
+      grid-template-columns: 1fr;
+
+      .main__grid__item {
+        max-width: 95%;
+
+        &:nth-child(2) {
+          margin-top: ${theme.spacingM};
+        }
+      }
+    }
+  }
+
+  @media ${device.mobile} {
+    padding-right: 0.5rem;
+
+    .main__grid {
+      margin-top: ${theme.spacingS};
+    }
+
+    .main__grid.date-weather {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
 `

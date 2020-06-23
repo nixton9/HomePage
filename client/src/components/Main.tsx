@@ -16,15 +16,15 @@ const Main: React.FC = () => {
   return (
     <MainStyles>
       <MainTitle>Welcome {username}</MainTitle>
-      <div className="main__grid">
+      <div className="main__grid date-weather">
         <div className="main__grid__item">
           <DateTimeContainer />
         </div>
-        <div className="main__grid__item">
+        <div className="main__grid__item weather-item">
           <WeatherContainer />
         </div>
       </div>
-      <div className="main__grid">
+      <div className="main__grid tabs-websites">
         <div className="main__grid__item">
           <MainTabs />
         </div>

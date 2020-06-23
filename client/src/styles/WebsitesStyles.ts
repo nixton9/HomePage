@@ -1,11 +1,17 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const WebsitesStyles = styled.div`
   margin-top: ${theme.spacingS};
 
   .block-overflow {
     height: 24.5rem;
+  }
+
+  @media ${device.mobile} {
+    .block-overflow {
+      height: 21rem;
+    }
   }
 
   .websites {
@@ -78,6 +84,19 @@ export const WebsitesStyles = styled.div`
           opacity: 1;
           pointer-events: all;
         }
+      }
+    }
+
+    @media ${device.mobile} {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-gap: 2rem 2rem;
+
+      .website__img {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+      .website__name {
+        font-size: 0.9rem;
       }
     }
   }

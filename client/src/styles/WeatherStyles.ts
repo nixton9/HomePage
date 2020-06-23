@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const WeatherStyles = styled.div`
   display: flex;
@@ -58,6 +58,32 @@ export const WeatherStyles = styled.div`
   &:hover {
     .reload {
       opacity: 1;
+    }
+  }
+
+  @media ${device.mobile} {
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    .icon {
+      margin-right: 0.4rem;
+
+      svg {
+        font-size: 4rem;
+        transform: translateY(-9px);
+      }
+    }
+    .info__city {
+      font-size: 0.9rem;
+      line-height: 1.5rem;
+    }
+    .info__desc {
+      font-size: 0.8rem;
+      line-height: 1rem;
+    }
+    .info__temp p {
+      font-size: 0.7rem;
+      margin-right: 0.5rem;
     }
   }
 `

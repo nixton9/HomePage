@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const DateTimeStyles = styled.div`
   color: ${theme.white};
@@ -18,5 +18,22 @@ export const DateTimeStyles = styled.div`
     font-size: 1.1rem;
     padding-left: 3px;
     line-height: 2rem;
+  }
+
+  @media ${device.mobile} {
+    .time {
+      font-size: 1.65rem;
+
+      .period {
+        font-size: 0.75rem;
+        position: relative;
+        right: 3px;
+      }
+    }
+
+    .date {
+      font-size: 0.65rem;
+      line-height: 1.2rem;
+    }
   }
 `

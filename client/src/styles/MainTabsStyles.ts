@@ -1,8 +1,12 @@
 import styled from 'styled-components'
-import { theme } from './theme'
+import { theme, device } from './theme'
 
 export const MainTabsStyles = styled.div`
   padding: ${theme.spacingXS} 0 0 ${theme.spacingS};
+
+  @media ${device.mobile} {
+    padding-left: 0;
+  }
 
   .tabs__icons {
     display: flex;
