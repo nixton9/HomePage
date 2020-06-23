@@ -18,6 +18,11 @@ export const NewsStyles = styled.div`
 
     @media ${device.mobile} {
       margin-top: ${theme.spacingXS};
+      height: 72vh;
+
+      a {
+        margin: 0 auto;
+      }
     }
 
     .article {

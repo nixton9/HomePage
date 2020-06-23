@@ -15,7 +15,7 @@ export const MoviesStyles = styled.div`
     justify-content: space-between;
 
     @media ${device.mobile} {
-      margin-top: ${theme.spacingXS};
+      margin-top: 1rem;
     }
 
     select {
@@ -57,6 +57,11 @@ export const MoviesStyles = styled.div`
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
+
+    @media ${device.mobile} {
+      margin-top: ${theme.spacingXS};
+      height: 76vh;
+    }
 
     .movie {
       width: 14.5rem;

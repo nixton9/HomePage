@@ -26,6 +26,10 @@ export const BlockStyles = styled.div`
     @media ${device.tablet} {
       padding-left: ${theme.spacingXS};
     }
+
+    @media ${device.mobile} {
+      padding-top: 5rem;
+    }
   }
 
   .block {

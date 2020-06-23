@@ -18,10 +18,15 @@ export const DribbbleStyles = styled.div`
 
     @media ${device.mobile} {
       margin-top: ${theme.spacingXS};
+      height: 69vh;
     }
 
     .shot {
       margin: 0 4rem 4rem 0;
+
+      @media ${device.mobile} {
+        margin: 0 auto 2.5rem auto;
+      }
 
       &__img {
         position: relative;

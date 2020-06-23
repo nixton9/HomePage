@@ -9,7 +9,7 @@ export const CategoriesStyles = styled.div`
   flex-wrap: wrap;
 
   @media ${device.mobile} {
-    margin-top: ${theme.spacingXS};
+    margin-top: 1rem;
   }
 
   .category {
@@ -31,7 +31,7 @@ export const CategoriesStyles = styled.div`
       font-size: 0.9rem;
       margin-right: 0.2rem;
       padding: 0.1rem 0.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
   }
 `

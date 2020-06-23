@@ -65,12 +65,13 @@ export const MainStyles = styled.div`
   @media ${device.mobile} {
     padding-right: 0.5rem;
 
-    .main__grid {
-      margin-top: ${theme.spacingS};
+    .main__grid.tabs-websites {
+      margin-top: ${theme.spacingXS};
     }
 
     .main__grid.date-weather {
       grid-template-columns: 1fr 2fr;
+      margin-top: ${theme.spacingS};
     }
   }
 `

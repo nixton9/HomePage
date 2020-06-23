@@ -22,17 +22,17 @@ export const DateTimeStyles = styled.div`
 
   @media ${device.mobile} {
     .time {
-      font-size: 1.65rem;
+      font-size: 1.75rem;
 
       .period {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         position: relative;
         right: 3px;
       }
     }
 
     .date {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       line-height: 1.2rem;
     }
   }
