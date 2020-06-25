@@ -62,7 +62,7 @@ export const MainTabsStyles = styled.div`
       }
 
       .block-overflow {
-        height: 25rem;
+        max-height: 25rem;
         overflow-y: scroll;
         padding-left: 1rem;
 

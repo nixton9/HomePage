@@ -3,15 +3,16 @@ import { theme, device } from './theme'
 
 export const StocksStyles = styled.div`
   padding-left: ${theme.spacingS};
+  margin-top: ${theme.spacingS};
   overflow-y: scroll;
   height: 85vh;
 
   @media ${device.mobile} {
     padding-left: 0;
+    margin-top: ${theme.spacingXS};
   }
 
   .indexes {
-    margin-top: ${theme.spacingS};
     display: grid;
     grid-template-columns: 1fr 1fr;
 

@@ -5,13 +5,8 @@ export const WebsitesStyles = styled.div`
   margin-top: ${theme.spacingS};
 
   .block-overflow {
-    height: 24.5rem;
-  }
-
-  @media ${device.mobile} {
-    .block-overflow {
-      height: 21rem;
-    }
+    max-height: 24.5rem;
+    overflow-y: scroll;
   }
 
   .websites {
@@ -19,8 +14,7 @@ export const WebsitesStyles = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 3rem 2rem;
     grid-auto-rows: minmax(min-content, max-content);
-    height: 25rem;
-    overflow-y: scroll;
+
     padding-top: 10px;
 
     .website {
@@ -66,6 +60,10 @@ export const WebsitesStyles = styled.div`
         pointer-events: none;
         transition: all 0.3s ease;
 
+        @media ${device.mobile} {
+          right: 0px;
+        }
+
         svg {
           position: absolute;
           top: 50%;
@@ -89,7 +87,7 @@ export const WebsitesStyles = styled.div`
 
     @media ${device.mobile} {
       grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-gap: 2rem 2rem;
+      grid-gap: 1.5rem;
 
       .website__img {
         width: 3.5rem;
