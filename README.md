@@ -15,7 +15,7 @@
   * Movies feed
   * TV Shows feed
     
-  ## Some Screens
+  ## Prints
   * [Home](https://imgurl.me/image/dPApM)
   * [Settings](https://imgurl.me/image/dPoch)
   * [Movies](https://imgurl.me/image/dPmMv)
