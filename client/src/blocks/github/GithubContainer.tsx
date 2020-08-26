@@ -48,7 +48,6 @@ const GithubContainer: React.FC = () => {
               setLoading(false)
             })
             .catch(err => {
-              setError('There was an error fetching Github notifications')
               setLoading(false)
             })
         })
