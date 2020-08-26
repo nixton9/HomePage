@@ -31,6 +31,7 @@
   * Tiingo API key for stocks data feed - REACT_APP_TIINGO_KEY
   * Password for 'login' - not optional - REACT_APP_LOGIN_KEY
   * Example: https://imgurl.me/image/dhJnu
+  * Open the settings and fill with name, Github API key, Todoist API key and the URL for a background image
   
   ## Commands
   * 'npm run dev' to start both frontend and server
