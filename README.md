@@ -1,6 +1,6 @@
 # HomePage
  Browser Startpage created in React & Node.
- 
+   
  ## Some of the functionalities
   * Current time
   * Current weather based on location
@@ -14,16 +14,16 @@
   * HackerNews feed
   * Movies feed
   * TV Shows feed
-  
+    
   ## Some Screens
-  [Home](https://imgurl.me/image/dPApM)
-  [Settings](https://imgurl.me/image/dPoch)
-  [Movies](https://imgurl.me/image/dPmMv)
-  [HackerNews](https://imgurl.me/image/dPljH)
-  [News](https://imgurl.me/image/dPOGR)
+  * [Home](https://imgurl.me/image/dPApM).
+  * [Settings](https://imgurl.me/image/dPoch)
+  * [Movies](https://imgurl.me/image/dPmMv)
+  * * [HackerNews](https://imgurl.me/image/dPljH)
+  * [News](https://imgurl.me/image/dPOGR)
   
   ## Usage
-  *Create a .env file at the root directory 
+  * Create a .env file at the root directory 
   
 
 
