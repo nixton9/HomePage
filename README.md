@@ -1,5 +1,5 @@
 # HomePage
- Browser Startpage created in React & Node.
+ Browser Startpage created in React & Node. Also works well in mobile since it's a PWA.
    
  ## Some of the functionalities
   * Current time
