@@ -31,8 +31,8 @@
       * Tiingo API key for stocks data feed - REACT_APP_TIINGO_KEY
       * Password for 'login' - not optional - REACT_APP_LOGIN_KEY
   * Example: https://imgurl.me/image/dhJnu
+  * To have news from your country, open file 'news.js' and change 'COUNTRYCODE' on line 6 to whatever country you want. See codes [here](https://newsapi.org/sources)
   * Open the settings and fill with name, Github API key, Todoist API key and the URL for a background image
-  * Open file 'news.js' and change 'COUNTRYCODE' on line 6 to whatever country you want. See codes [here](https://newsapi.org/sources)
   
   ## Commands
   * 'npm run dev' to start both frontend and server
