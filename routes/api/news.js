@@ -3,6 +3,8 @@ const router = express.Router()
 const cors = require('cors')
 const axios = require('axios')
 
+const COUNTRYCODE = 'pt'
+
 router.use(cors())
 
 router.get('/categories', (req, res) => {
@@ -20,7 +22,7 @@ router.get('/categories', (req, res) => {
 })
 
 router.get('/:cat/:key', (req, res) => {
-  const url = `http://newsapi.org/v2/top-headlines?country=pt&category=${req.params.cat}&apiKey=${req.params.key}`
+  const url = `http://newsapi.org/v2/top-headlines?country=${COUNTRYCODE}&category=${req.params.cat}&apiKey=${req.params.key}`
 
   axios(url)
     .then((response) => {
@@ -32,7 +34,7 @@ router.get('/:cat/:key', (req, res) => {
 })
 
 router.get('/:key', (req, res) => {
-  const url = `http://newsapi.org/v2/top-headlines?country=pt&apiKey=${req.params.key}`
+  const url = `http://newsapi.org/v2/top-headlines?country=${COUNTRYCODE}&apiKey=${req.params.key}`
 
   axios(url)
     .then((response) => {
