@@ -23,7 +23,7 @@
   * [News](https://imgurl.me/image/dPOGR)
   
   ## Usage
-  * Create a .env file at the root directory with the following keys for the features you want:
+  * Create a .env file on the 'client' folder with the following keys for the features you want:
   * Google API Client ID & Google API Key for Gmail - REACT_APP_GOOGLE_CLIENT_ID & REACT_APP_GOOGLE_API_KEY 
   * OpenWeatherMap API key for Weather - REACT_APP_WEATHER_API_KEY 
   * NewsAPI key for News feed - REACT_APP_NEWS_API_KEY
