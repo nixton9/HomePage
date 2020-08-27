@@ -24,12 +24,12 @@
   
   ## Usage
   * Create a .env file on the 'client' folder with the following keys for the features you want:
-  * Google API Client ID & Google API Key for Gmail - REACT_APP_GOOGLE_CLIENT_ID & REACT_APP_GOOGLE_API_KEY 
-  * OpenWeatherMap API key for Weather - REACT_APP_WEATHER_API_KEY 
-  * NewsAPI key for News feed - REACT_APP_NEWS_API_KEY
-  * TheMoviesDB API key for Movies & TV Shows feeds - REACT_APP_MOVIES_API_KEY
-  * Tiingo API key for stocks data feed - REACT_APP_TIINGO_KEY
-  * Password for 'login' - not optional - REACT_APP_LOGIN_KEY
+      * Google API Client ID & Google API Key for Gmail - REACT_APP_GOOGLE_CLIENT_ID & REACT_APP_GOOGLE_API_KEY 
+      * OpenWeatherMap API key for Weather - REACT_APP_WEATHER_API_KEY 
+      * NewsAPI key for News feed - REACT_APP_NEWS_API_KEY
+      * TheMoviesDB API key for Movies & TV Shows feeds - REACT_APP_MOVIES_API_KEY
+      * Tiingo API key for stocks data feed - REACT_APP_TIINGO_KEY
+      * Password for 'login' - not optional - REACT_APP_LOGIN_KEY
   * Example: https://imgurl.me/image/dhJnu
   * Open the settings and fill with name, Github API key, Todoist API key and the URL for a background image
   
